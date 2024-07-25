@@ -1,0 +1,12 @@
+<launch>
+    <!-- Set parameters for the Kinova Gen3 hardware node -->
+    <arg name="ip_address" default="192.168.1.10"/>
+    <arg name="dof" default="7"/>
+
+    <!-- Launch the Kinova Gen3 hardware node -->
+    <include file="$(find kortex_hardware)/launch/gen3_hardware.launch">
+        <arg name="ip_address" value="$(arg ip_address)"/>
+        <arg name="dof" value="$(arg dof)"/>
+    </include>
+</launch>
+
