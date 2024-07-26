@@ -1,0 +1,841 @@
++ source /opt/ros/noetic/setup.bash
+++ CATKIN_SHELL=bash
+++++ dirname /opt/ros/noetic/setup.bash
++++ builtin cd /opt/ros/noetic
++++ pwd
+++ _CATKIN_SETUP_DIR=/opt/ros/noetic
+++ . /opt/ros/noetic/setup.sh
++++ : /opt/ros/noetic
++++ _SETUP_UTIL=/opt/ros/noetic/_setup_util.py
++++ unset _CATKIN_SETUP_DIR
++++ '[' '!' -f /opt/ros/noetic/_setup_util.py ']'
+++++ uname -s
++++ _UNAME=Linux
++++ _IS_DARWIN=0
++++ '[' Linux = Darwin ']'
++++ unset _UNAME
++++ export CMAKE_PREFIX_PATH
++++ '[' 0 -eq 0 ']'
++++ export LD_LIBRARY_PATH
++++ unset _IS_DARWIN
++++ export PATH
++++ export PKG_CONFIG_PATH
++++ export PYTHONPATH
++++ '[' -z bash ']'
++++ '[' -d '' ']'
++++ _TMPDIR=/tmp
+++++ mktemp /tmp/setup.sh.XXXXXXXXXX
++++ _SETUP_TMP=/tmp/setup.sh.99kxpUTNyh
++++ unset _TMPDIR
++++ '[' 0 -ne 0 -o '!' -f /tmp/setup.sh.99kxpUTNyh ']'
++++ CATKIN_SHELL=bash
++++ /opt/ros/noetic/_setup_util.py
++++ _RC=0
++++ '[' 0 -ne 0 ']'
++++ unset _RC
++++ unset _SETUP_UTIL
++++ . /tmp/setup.sh.99kxpUTNyh
+++++ export CMAKE_PREFIX_PATH=/opt/ros/noetic
+++++ CMAKE_PREFIX_PATH=/opt/ros/noetic
+++++ export LD_LIBRARY_PATH=/opt/ros/noetic/lib:/opt/ros/noetic/lib/x86_64-linux-gnu
+++++ LD_LIBRARY_PATH=/opt/ros/noetic/lib:/opt/ros/noetic/lib/x86_64-linux-gnu
+++++ export PATH=/opt/ros/noetic/bin:/home/sharer/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++++ PATH=/opt/ros/noetic/bin:/home/sharer/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++++ export PKG_CONFIG_PATH=/opt/ros/noetic/lib/pkgconfig:/opt/ros/noetic/lib/x86_64-linux-gnu/pkgconfig
+++++ PKG_CONFIG_PATH=/opt/ros/noetic/lib/pkgconfig:/opt/ros/noetic/lib/x86_64-linux-gnu/pkgconfig
+++++ export PYTHONPATH=/opt/ros/noetic/lib/python3/dist-packages
+++++ PYTHONPATH=/opt/ros/noetic/lib/python3/dist-packages
+++++ export _CATKIN_ENVIRONMENT_HOOKS_COUNT=12
+++++ _CATKIN_ENVIRONMENT_HOOKS_COUNT=12
+++++ export _CATKIN_ENVIRONMENT_HOOKS_0=/opt/ros/noetic/etc/catkin/profile.d/1.ros_distro.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_0=/opt/ros/noetic/etc/catkin/profile.d/1.ros_distro.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_0_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_0_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_1=/opt/ros/noetic/etc/catkin/profile.d/1.ros_etc_dir.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_1=/opt/ros/noetic/etc/catkin/profile.d/1.ros_etc_dir.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_1_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_1_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_2=/opt/ros/noetic/etc/catkin/profile.d/1.ros_package_path.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_2=/opt/ros/noetic/etc/catkin/profile.d/1.ros_package_path.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_2_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_2_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_3=/opt/ros/noetic/etc/catkin/profile.d/1.ros_python_version.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_3=/opt/ros/noetic/etc/catkin/profile.d/1.ros_python_version.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_3_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_3_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_4=/opt/ros/noetic/etc/catkin/profile.d/1.ros_version.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_4=/opt/ros/noetic/etc/catkin/profile.d/1.ros_version.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_4_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_4_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_5=/opt/ros/noetic/etc/catkin/profile.d/10.rosbuild.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_5=/opt/ros/noetic/etc/catkin/profile.d/10.rosbuild.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_5_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_5_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_6=/opt/ros/noetic/etc/catkin/profile.d/10.roslaunch.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_6=/opt/ros/noetic/etc/catkin/profile.d/10.roslaunch.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_6_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_6_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_7=/opt/ros/noetic/etc/catkin/profile.d/99.roslisp.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_7=/opt/ros/noetic/etc/catkin/profile.d/99.roslisp.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_7_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_7_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_8=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make.bash
+++++ _CATKIN_ENVIRONMENT_HOOKS_8=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make.bash
+++++ export _CATKIN_ENVIRONMENT_HOOKS_8_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_8_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_9=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make_isolated.bash
+++++ _CATKIN_ENVIRONMENT_HOOKS_9=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make_isolated.bash
+++++ export _CATKIN_ENVIRONMENT_HOOKS_9_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_9_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_10=/opt/ros/noetic/etc/catkin/profile.d/15.rosbash.bash
+++++ _CATKIN_ENVIRONMENT_HOOKS_10=/opt/ros/noetic/etc/catkin/profile.d/15.rosbash.bash
+++++ export _CATKIN_ENVIRONMENT_HOOKS_10_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_10_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_11=/opt/ros/noetic/etc/catkin/profile.d/20.transform.bash
+++++ _CATKIN_ENVIRONMENT_HOOKS_11=/opt/ros/noetic/etc/catkin/profile.d/20.transform.bash
+++++ export _CATKIN_ENVIRONMENT_HOOKS_11_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_11_WORKSPACE=/opt/ros/noetic
++++ rm -f /tmp/setup.sh.99kxpUTNyh
++++ unset _SETUP_TMP
++++ _i=0
++++ '[' 0 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_0'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/1.ros_distro.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_0
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_0_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_0_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/1.ros_distro.sh
+++++ '[' -n '' -a '' '!=' noetic ']'
+++++ export ROS_DISTRO=noetic
+++++ ROS_DISTRO=noetic
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=1
++++ '[' 1 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_1'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/1.ros_etc_dir.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_1
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_1_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_1_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/1.ros_etc_dir.sh
+++++ '[' -z /opt/ros/noetic ']'
+++++ export ROS_ETC_DIR=/opt/ros/noetic/etc/ros
+++++ ROS_ETC_DIR=/opt/ros/noetic/etc/ros
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=2
++++ '[' 2 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_2'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/1.ros_package_path.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_2
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_2_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_2_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/1.ros_package_path.sh
++++++ cat
+++++ PYTHON_CODE_BUILD_ROS_PACKAGE_PATH='from __future__ import print_function
+import os
+env_name = '\''CMAKE_PREFIX_PATH'\''
+paths = [path for path in os.environ[env_name].split(os.pathsep)] if env_name in os.environ and os.environ[env_name] != '\'''\'' else []
+workspaces = [path for path in paths if os.path.exists(os.path.join(path, '\''.catkin'\''))]
+paths = []
+for workspace in workspaces:
+    filename = os.path.join(workspace, '\''.catkin'\'')
+    data = '\'''\''
+    with open(filename) as f:
+        data = f.read()
+    if data == '\'''\'':
+        paths.append(os.path.join(workspace, '\''share'\''))
+        if os.path.isdir(os.path.join(workspace, '\''stacks'\'')):
+            paths.append(os.path.join(workspace, '\''stacks'\''))
+    else:
+        for source_path in data.split('\'';'\''):
+            paths.append(source_path)
+print(os.pathsep.join(paths))'
++++++ /usr/bin/python3 -c 'from __future__ import print_function
+import os
+env_name = '\''CMAKE_PREFIX_PATH'\''
+paths = [path for path in os.environ[env_name].split(os.pathsep)] if env_name in os.environ and os.environ[env_name] != '\'''\'' else []
+workspaces = [path for path in paths if os.path.exists(os.path.join(path, '\''.catkin'\''))]
+paths = []
+for workspace in workspaces:
+    filename = os.path.join(workspace, '\''.catkin'\'')
+    data = '\'''\''
+    with open(filename) as f:
+        data = f.read()
+    if data == '\'''\'':
+        paths.append(os.path.join(workspace, '\''share'\''))
+        if os.path.isdir(os.path.join(workspace, '\''stacks'\'')):
+            paths.append(os.path.join(workspace, '\''stacks'\''))
+    else:
+        for source_path in data.split('\'';'\''):
+            paths.append(source_path)
+print(os.pathsep.join(paths))'
+++++ export ROS_PACKAGE_PATH=/opt/ros/noetic/share
+++++ ROS_PACKAGE_PATH=/opt/ros/noetic/share
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=3
++++ '[' 3 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_3'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/1.ros_python_version.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_3
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_3_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_3_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/1.ros_python_version.sh
+++++ export ROS_PYTHON_VERSION=3
+++++ ROS_PYTHON_VERSION=3
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=4
++++ '[' 4 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_4'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/1.ros_version.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_4
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_4_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_4_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/1.ros_version.sh
+++++ export ROS_VERSION=1
+++++ ROS_VERSION=1
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=5
++++ '[' 5 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_5'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/10.rosbuild.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_5
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_5_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_5_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/10.rosbuild.sh
+++++ '[' -z /opt/ros/noetic ']'
+++++ export ROS_ROOT=/opt/ros/noetic/share/ros
+++++ ROS_ROOT=/opt/ros/noetic/share/ros
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=6
++++ '[' 6 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_6'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/10.roslaunch.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_6
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_6_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_6_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/10.roslaunch.sh
+++++ '[' '!' '' ']'
+++++ export ROS_MASTER_URI=http://localhost:11311
+++++ ROS_MASTER_URI=http://localhost:11311
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=7
++++ '[' 7 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_7'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/99.roslisp.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_7
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_7_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_7_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/99.roslisp.sh
++++++ cat
+++++ PYTHON_CODE_BUILD_ROSLISP_PACKAGE_DIRECTORIES='from __future__ import print_function
+import os
+env_name = '\''CMAKE_PREFIX_PATH'\''
+paths = [path for path in os.environ[env_name].split(os.pathsep)] if env_name in os.environ and os.environ[env_name] != '\'''\'' else []
+workspaces = [path for path in paths if os.path.exists(os.path.join(path, '\''.catkin'\''))]
+paths = []
+for workspace in workspaces:
+    filename = os.path.join(workspace, '\''.catkin'\'')
+    data = '\'''\''
+    with open(filename) as f:
+        data = f.read()
+    if data:
+        paths.append(os.path.join(workspace, '\''share'\'', '\''common-lisp'\''))
+print(os.pathsep.join(paths))'
++++++ /usr/bin/python3 -c 'from __future__ import print_function
+import os
+env_name = '\''CMAKE_PREFIX_PATH'\''
+paths = [path for path in os.environ[env_name].split(os.pathsep)] if env_name in os.environ and os.environ[env_name] != '\'''\'' else []
+workspaces = [path for path in paths if os.path.exists(os.path.join(path, '\''.catkin'\''))]
+paths = []
+for workspace in workspaces:
+    filename = os.path.join(workspace, '\''.catkin'\'')
+    data = '\'''\''
+    with open(filename) as f:
+        data = f.read()
+    if data:
+        paths.append(os.path.join(workspace, '\''share'\'', '\''common-lisp'\''))
+print(os.pathsep.join(paths))'
+++++ export ROSLISP_PACKAGE_DIRECTORIES=
+++++ ROSLISP_PACKAGE_DIRECTORIES=
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=8
++++ '[' 8 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_8'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make.bash
++++ unset _CATKIN_ENVIRONMENT_HOOKS_8
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_8_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_8_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/05.catkin_make.bash
+++++ complete -F _catkin_make catkin_make
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=9
++++ '[' 9 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_9'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make_isolated.bash
++++ unset _CATKIN_ENVIRONMENT_HOOKS_9
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_9_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_9_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/05.catkin_make_isolated.bash
+++++ complete -F _catkin_make_isolated catkin_make_isolated
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=10
++++ '[' 10 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_10'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/15.rosbash.bash
++++ unset _CATKIN_ENVIRONMENT_HOOKS_10
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_10_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_10_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/15.rosbash.bash
+++++ '[' -z /opt/ros/noetic ']'
+++++ . /opt/ros/noetic/share/rosbash/rosbash
++++++ complete -F _roscomplete_sub_dir -o nospace roscd
++++++ complete -F _roscomplete_sub_dir -o nospace rospd
++++++ complete -F _roscomplete_sub_dir -o nospace rosls
++++++ complete -F _roscomplete_rosmake rosmake
++++++ complete -F _roscomplete_rosclean rosclean
++++++ complete -F _roscomplete_exe rosrun
++++++ complete -F _roscomplete_file rosed
++++++ complete -F _roscomplete_file roscp
++++++ complete -F _roscomplete_file roscat
++++++ complete -F _roscomplete_launch -o filenames roslaunch
++++++ complete -F _roscomplete_test -o filenames rostest
++++++ complete -F _roscomplete_rospack rospack
++++++ complete -F _roscomplete_rosbag -o default rosbag
++++++ complete -F _roscomplete_rosnode rosnode
++++++ complete -F _roscomplete_rosparam rosparam
++++++ complete -F _roscomplete_rostopic rostopic
++++++ complete -F _roscomplete_rosservice rosservice
++++++ complete -F _roscomplete_rosmsg rosmsg
++++++ complete -F _roscomplete_rossrv rossrv
++++++ complete -F _roscomplete_roscreate_pkg roscreate-pkg
++++++ complete -F _roscomplete_roswtf -o filenames roswtf
++++++ complete -F _roscomplete_rosconsole rosconsole
++++++ complete -F _roscomplete_filemv rosmv
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=11
++++ '[' 11 -lt 12 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_11'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/20.transform.bash
++++ unset _CATKIN_ENVIRONMENT_HOOKS_11
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_11_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_11_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/20.transform.bash
++++++ complete
++++++ grep -w rosrun
++++++ awk '{print $3}'
+++++ _sav_transform_roscomplete_rosrun=_roscomplete_exe
+++++ complete -F _roscomplete_rosrun_transform rosrun
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=12
++++ '[' 12 -lt 12 ']'
++++ unset _i
++++ unset _CATKIN_ENVIRONMENT_HOOKS_COUNT
++ source /home/sharer/hw_test_ws/devel/setup.bash
+++ CATKIN_SHELL=bash
+++++ dirname /home/sharer/hw_test_ws/devel/setup.bash
++++ builtin cd /home/sharer/hw_test_ws/devel
++++ pwd
+++ _CATKIN_SETUP_DIR=/home/sharer/hw_test_ws/devel
+++ . /home/sharer/hw_test_ws/devel/setup.sh
++++ : /home/sharer/hw_test_ws/devel
++++ _SETUP_UTIL=/home/sharer/hw_test_ws/devel/_setup_util.py
++++ unset _CATKIN_SETUP_DIR
++++ '[' '!' -f /home/sharer/hw_test_ws/devel/_setup_util.py ']'
+++++ uname -s
++++ _UNAME=Linux
++++ _IS_DARWIN=0
++++ '[' Linux = Darwin ']'
++++ unset _UNAME
++++ export CMAKE_PREFIX_PATH
++++ '[' 0 -eq 0 ']'
++++ export LD_LIBRARY_PATH
++++ unset _IS_DARWIN
++++ export PATH
++++ export PKG_CONFIG_PATH
++++ export PYTHONPATH
++++ '[' -z bash ']'
++++ '[' -d '' ']'
++++ _TMPDIR=/tmp
+++++ mktemp /tmp/setup.sh.XXXXXXXXXX
++++ _SETUP_TMP=/tmp/setup.sh.s5g9bHScC1
++++ unset _TMPDIR
++++ '[' 0 -ne 0 -o '!' -f /tmp/setup.sh.s5g9bHScC1 ']'
++++ CATKIN_SHELL=bash
++++ /home/sharer/hw_test_ws/devel/_setup_util.py
++++ _RC=0
++++ '[' 0 -ne 0 ']'
++++ unset _RC
++++ unset _SETUP_UTIL
++++ . /tmp/setup.sh.s5g9bHScC1
+++++ export CMAKE_PREFIX_PATH=
+++++ CMAKE_PREFIX_PATH=
+++++ export LD_LIBRARY_PATH=
+++++ LD_LIBRARY_PATH=
+++++ export PATH=/home/sharer/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++++ PATH=/home/sharer/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++++ export PKG_CONFIG_PATH=
+++++ PKG_CONFIG_PATH=
+++++ export PYTHONPATH=
+++++ PYTHONPATH=
+++++ export CMAKE_PREFIX_PATH=/home/sharer/hw_test_ws/devel:/home/sharer/jl_ws/devel:/opt/ros/noetic
+++++ CMAKE_PREFIX_PATH=/home/sharer/hw_test_ws/devel:/home/sharer/jl_ws/devel:/opt/ros/noetic
+++++ export LD_LIBRARY_PATH=/home/sharer/hw_test_ws/devel/lib:/home/sharer/jl_ws/devel/lib:/opt/ros/noetic/lib:/opt/ros/noetic/lib/x86_64-linux-gnu
+++++ LD_LIBRARY_PATH=/home/sharer/hw_test_ws/devel/lib:/home/sharer/jl_ws/devel/lib:/opt/ros/noetic/lib:/opt/ros/noetic/lib/x86_64-linux-gnu
+++++ export PATH=/opt/ros/noetic/bin:/home/sharer/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++++ PATH=/opt/ros/noetic/bin:/home/sharer/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++++ export PKG_CONFIG_PATH=/home/sharer/hw_test_ws/devel/lib/pkgconfig:/home/sharer/jl_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig:/opt/ros/noetic/lib/x86_64-linux-gnu/pkgconfig
+++++ PKG_CONFIG_PATH=/home/sharer/hw_test_ws/devel/lib/pkgconfig:/home/sharer/jl_ws/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig:/opt/ros/noetic/lib/x86_64-linux-gnu/pkgconfig
+++++ export PYTHONPATH=/home/sharer/hw_test_ws/devel/lib/python3/dist-packages:/home/sharer/jl_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages
+++++ PYTHONPATH=/home/sharer/hw_test_ws/devel/lib/python3/dist-packages:/home/sharer/jl_ws/devel/lib/python3/dist-packages:/opt/ros/noetic/lib/python3/dist-packages
+++++ export _CATKIN_ENVIRONMENT_HOOKS_COUNT=17
+++++ _CATKIN_ENVIRONMENT_HOOKS_COUNT=17
+++++ export _CATKIN_ENVIRONMENT_HOOKS_0=/opt/ros/noetic/etc/catkin/profile.d/1.ros_distro.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_0=/opt/ros/noetic/etc/catkin/profile.d/1.ros_distro.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_0_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_0_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_1=/opt/ros/noetic/etc/catkin/profile.d/1.ros_etc_dir.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_1=/opt/ros/noetic/etc/catkin/profile.d/1.ros_etc_dir.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_1_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_1_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_2=/opt/ros/noetic/etc/catkin/profile.d/1.ros_package_path.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_2=/opt/ros/noetic/etc/catkin/profile.d/1.ros_package_path.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_2_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_2_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_3=/opt/ros/noetic/etc/catkin/profile.d/1.ros_python_version.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_3=/opt/ros/noetic/etc/catkin/profile.d/1.ros_python_version.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_3_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_3_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_4=/opt/ros/noetic/etc/catkin/profile.d/1.ros_version.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_4=/opt/ros/noetic/etc/catkin/profile.d/1.ros_version.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_4_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_4_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_5=/opt/ros/noetic/etc/catkin/profile.d/10.rosbuild.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_5=/opt/ros/noetic/etc/catkin/profile.d/10.rosbuild.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_5_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_5_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_6=/opt/ros/noetic/etc/catkin/profile.d/10.roslaunch.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_6=/opt/ros/noetic/etc/catkin/profile.d/10.roslaunch.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_6_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_6_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_7=/opt/ros/noetic/etc/catkin/profile.d/99.roslisp.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_7=/opt/ros/noetic/etc/catkin/profile.d/99.roslisp.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_7_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_7_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_8=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-gazebo.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_8=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-gazebo.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_8_WORKSPACE=/home/sharer/hw_test_ws/devel
+++++ _CATKIN_ENVIRONMENT_HOOKS_8_WORKSPACE=/home/sharer/hw_test_ws/devel
+++++ export _CATKIN_ENVIRONMENT_HOOKS_9=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-navigation.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_9=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-navigation.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_9_WORKSPACE=/home/sharer/hw_test_ws/devel
+++++ _CATKIN_ENVIRONMENT_HOOKS_9_WORKSPACE=/home/sharer/hw_test_ws/devel
+++++ export _CATKIN_ENVIRONMENT_HOOKS_10=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-stage.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_10=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-stage.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_10_WORKSPACE=/home/sharer/hw_test_ws/devel
+++++ _CATKIN_ENVIRONMENT_HOOKS_10_WORKSPACE=/home/sharer/hw_test_ws/devel
+++++ export _CATKIN_ENVIRONMENT_HOOKS_11=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-stdr.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_11=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-stdr.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_11_WORKSPACE=/home/sharer/hw_test_ws/devel
+++++ _CATKIN_ENVIRONMENT_HOOKS_11_WORKSPACE=/home/sharer/hw_test_ws/devel
+++++ export _CATKIN_ENVIRONMENT_HOOKS_12=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot.sh
+++++ _CATKIN_ENVIRONMENT_HOOKS_12=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot.sh
+++++ export _CATKIN_ENVIRONMENT_HOOKS_12_WORKSPACE=/home/sharer/hw_test_ws/devel
+++++ _CATKIN_ENVIRONMENT_HOOKS_12_WORKSPACE=/home/sharer/hw_test_ws/devel
+++++ export _CATKIN_ENVIRONMENT_HOOKS_13=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make.bash
+++++ _CATKIN_ENVIRONMENT_HOOKS_13=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make.bash
+++++ export _CATKIN_ENVIRONMENT_HOOKS_13_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_13_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_14=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make_isolated.bash
+++++ _CATKIN_ENVIRONMENT_HOOKS_14=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make_isolated.bash
+++++ export _CATKIN_ENVIRONMENT_HOOKS_14_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_14_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_15=/opt/ros/noetic/etc/catkin/profile.d/15.rosbash.bash
+++++ _CATKIN_ENVIRONMENT_HOOKS_15=/opt/ros/noetic/etc/catkin/profile.d/15.rosbash.bash
+++++ export _CATKIN_ENVIRONMENT_HOOKS_15_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_15_WORKSPACE=/opt/ros/noetic
+++++ export _CATKIN_ENVIRONMENT_HOOKS_16=/opt/ros/noetic/etc/catkin/profile.d/20.transform.bash
+++++ _CATKIN_ENVIRONMENT_HOOKS_16=/opt/ros/noetic/etc/catkin/profile.d/20.transform.bash
+++++ export _CATKIN_ENVIRONMENT_HOOKS_16_WORKSPACE=/opt/ros/noetic
+++++ _CATKIN_ENVIRONMENT_HOOKS_16_WORKSPACE=/opt/ros/noetic
++++ rm -f /tmp/setup.sh.s5g9bHScC1
++++ unset _SETUP_TMP
++++ _i=0
++++ '[' 0 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_0'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/1.ros_distro.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_0
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_0_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_0_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/1.ros_distro.sh
+++++ '[' -n noetic -a noetic '!=' noetic ']'
+++++ export ROS_DISTRO=noetic
+++++ ROS_DISTRO=noetic
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=1
++++ '[' 1 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_1'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/1.ros_etc_dir.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_1
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_1_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_1_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/1.ros_etc_dir.sh
+++++ '[' -z /opt/ros/noetic ']'
+++++ export ROS_ETC_DIR=/opt/ros/noetic/etc/ros
+++++ ROS_ETC_DIR=/opt/ros/noetic/etc/ros
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=2
++++ '[' 2 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_2'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/1.ros_package_path.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_2
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_2_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_2_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/1.ros_package_path.sh
++++++ cat
+++++ PYTHON_CODE_BUILD_ROS_PACKAGE_PATH='from __future__ import print_function
+import os
+env_name = '\''CMAKE_PREFIX_PATH'\''
+paths = [path for path in os.environ[env_name].split(os.pathsep)] if env_name in os.environ and os.environ[env_name] != '\'''\'' else []
+workspaces = [path for path in paths if os.path.exists(os.path.join(path, '\''.catkin'\''))]
+paths = []
+for workspace in workspaces:
+    filename = os.path.join(workspace, '\''.catkin'\'')
+    data = '\'''\''
+    with open(filename) as f:
+        data = f.read()
+    if data == '\'''\'':
+        paths.append(os.path.join(workspace, '\''share'\''))
+        if os.path.isdir(os.path.join(workspace, '\''stacks'\'')):
+            paths.append(os.path.join(workspace, '\''stacks'\''))
+    else:
+        for source_path in data.split('\'';'\''):
+            paths.append(source_path)
+print(os.pathsep.join(paths))'
++++++ /usr/bin/python3 -c 'from __future__ import print_function
+import os
+env_name = '\''CMAKE_PREFIX_PATH'\''
+paths = [path for path in os.environ[env_name].split(os.pathsep)] if env_name in os.environ and os.environ[env_name] != '\'''\'' else []
+workspaces = [path for path in paths if os.path.exists(os.path.join(path, '\''.catkin'\''))]
+paths = []
+for workspace in workspaces:
+    filename = os.path.join(workspace, '\''.catkin'\'')
+    data = '\'''\''
+    with open(filename) as f:
+        data = f.read()
+    if data == '\'''\'':
+        paths.append(os.path.join(workspace, '\''share'\''))
+        if os.path.isdir(os.path.join(workspace, '\''stacks'\'')):
+            paths.append(os.path.join(workspace, '\''stacks'\''))
+    else:
+        for source_path in data.split('\'';'\''):
+            paths.append(source_path)
+print(os.pathsep.join(paths))'
+++++ export ROS_PACKAGE_PATH=/home/sharer/hw_test_ws/src/kinova-ros/kinova_bringup:/home/sharer/hw_test_ws/src/kinova-ros/kinova_control:/home/sharer/hw_test_ws/src/kinova-ros/kinova_description:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/robot_configs/j2n6s300_moveit_config:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/robot_configs/j2s6s300_moveit_config:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/robot_configs/j2s7s300_moveit_config:/home/sharer/hw_test_ws/src/kinova-ros/kinova_gazebo:/home/sharer/hw_test_ws/src/kinova_movement:/home/sharer/hw_test_ws/src/kinova-ros/kinova_msgs:/home/sharer/hw_test_ws/src/kinova-ros/kinova_driver:/home/sharer/hw_test_ws/src/kinova-ros/kinova_demo:/home/sharer/hw_test_ws/src/kobuki/kobuki:/home/sharer/hw_test_ws/src/kobuki/kobuki_auto_docking:/home/sharer/hw_test_ws/src/kobuki/kobuki_bumper2pc:/home/sharer/hw_test_ws/src/kobuki/kobuki_capabilities:/home/sharer/hw_test_ws/src/kobuki/kobuki_description:/home/sharer/hw_test_ws/src/kobuki/kobuki_keyop:/home/sharer/hw_test_ws/src/kobuki/kobuki_rapps:/home/sharer/hw_test_ws/src/kortex_description:/home/sharer/hw_test_ws/src/kortex_hardware:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/robot_configs/m1n6s300_moveit_config:/home/sharer/hw_test_ws/src/moveit/moveit:/home/sharer/hw_test_ws/src/moveit/moveit_commander:/home/sharer/hw_test_ws/src/moveit_msgs:/home/sharer/hw_test_ws/src/gen3_compliant_controllers:/home/sharer/hw_test_ws/src/moveit/moveit_core:/home/sharer/hw_test_ws/src/moveit/moveit_planners/chomp/chomp_motion_planner:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/inverse_kinematics_plugins/ikfast/j2n6s300_ikfast:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/inverse_kinematics_plugins/ikfast/j2s6s300_ikfast:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/inverse_kinematics_plugins/ikfast/j2s7s300_ikfast:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/inverse_kinematics_plugins/ikfast/m1n6s300_ikfast:/home/sharer/hw_test_ws/src/moveit/moveit_planners/chomp/chomp_optimizer_adapter:/home/sharer/hw_test_ws/src/moveit/moveit_planners/moveit_planners:/home/sharer/hw_test_ws/src/moveit/moveit_plugins/moveit_plugins:/home/sharer/hw_test_ws/src/moveit/moveit_ros/moveit_ros:/home/sharer/hw_test_ws/src/moveit/moveit_ros/occupancy_map_monitor:/home/sharer/hw_test_ws/src/moveit/moveit_ros/planning:/home/sharer/hw_test_ws/src/moveit/moveit_plugins/moveit_fake_controller_manager:/home/sharer/hw_test_ws/src/moveit/moveit_kinematics:/home/sharer/hw_test_ws/src/moveit/moveit_planners/ompl:/home/sharer/hw_test_ws/src/moveit/moveit_ros/move_group:/home/sharer/hw_test_ws/src/moveit/moveit_ros/manipulation:/home/sharer/hw_test_ws/src/moveit/moveit_ros/perception:/home/sharer/hw_test_ws/src/moveit/moveit_ros/robot_interaction:/home/sharer/hw_test_ws/src/moveit/moveit_ros/warehouse:/home/sharer/hw_test_ws/src/moveit/moveit_ros/benchmarks:/home/sharer/hw_test_ws/src/moveit/moveit_ros/planning_interface:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/kinova_arm_moveit_demo:/home/sharer/hw_test_ws/src/moveit/moveit_planners/chomp/chomp_interface:/home/sharer/hw_test_ws/src/moveit/moveit_ros/visualization:/home/sharer/hw_test_ws/src/moveit/moveit_runtime:/home/sharer/hw_test_ws/src/moveit/moveit_ros/moveit_servo:/home/sharer/hw_test_ws/src/moveit/moveit_setup_assistant:/home/sharer/hw_test_ws/src/moveit/moveit_plugins/moveit_simple_controller_manager:/home/sharer/hw_test_ws/src/moveit/moveit_plugins/moveit_ros_control_interface:/home/sharer/hw_test_ws/src/moveit/moveit_planners/pilz_industrial_motion_planner_testutils:/home/sharer/hw_test_ws/src/moveit/moveit_planners/pilz_industrial_motion_planner:/home/sharer/hw_test_ws/src/rec_rep:/home/sharer/hw_test_ws/src/recorder:/home/sharer/hw_test_ws/src/sonify_it:/home/sharer/hw_test_ws/src/turtlebot/turtlebot:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_actions:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_apps:/home/sharer/hw_test_ws/src/turtlebot/turtlebot_bringup:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_calibration:/home/sharer/hw_test_ws/src/turtlebot/turtlebot_capabilities:/home/sharer/hw_test_ws/src/turtlebot/turtlebot_description:/home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_gazebo:/home/sharer/hw_test_ws/src/turtlebot_msgs:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_follower:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_navigation:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_rapps:/home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_simulator:/home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_stage:/home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_stdr:/home/sharer/hw_test_ws/src/turtlebot/turtlebot_teleop:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_cmd_vel_mux:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_controllers:/home/sharer/hw_test_ws/src/kobuki/kobuki_controller_tutorial:/home/sharer/hw_test_ws/src/kobuki/kobuki_random_walker:/home/sharer/hw_test_ws/src/kobuki/kobuki_safety_controller:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_keyop:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_localization_manager:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_math_toolkit:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_diff_drive_pose_controller:/home/sharer/hw_test_ws/src/yocs_msgs:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_joyop:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_navi_toolkit:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_navigator:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_rapps:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_safety_controller:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_velocity_smoother:/home/sharer/hw_test_ws/src/kobuki/kobuki_node:/home/sharer/hw_test_ws/src/kobuki/kobuki_testsuite:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_virtual_sensor:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_waypoint_provider:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_waypoints_navi:/home/sharer/hw_test_ws/src/yujin_ocs/yujin_ocs:/home/sharer/jl_ws/src:/opt/ros/noetic/share
+++++ ROS_PACKAGE_PATH=/home/sharer/hw_test_ws/src/kinova-ros/kinova_bringup:/home/sharer/hw_test_ws/src/kinova-ros/kinova_control:/home/sharer/hw_test_ws/src/kinova-ros/kinova_description:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/robot_configs/j2n6s300_moveit_config:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/robot_configs/j2s6s300_moveit_config:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/robot_configs/j2s7s300_moveit_config:/home/sharer/hw_test_ws/src/kinova-ros/kinova_gazebo:/home/sharer/hw_test_ws/src/kinova_movement:/home/sharer/hw_test_ws/src/kinova-ros/kinova_msgs:/home/sharer/hw_test_ws/src/kinova-ros/kinova_driver:/home/sharer/hw_test_ws/src/kinova-ros/kinova_demo:/home/sharer/hw_test_ws/src/kobuki/kobuki:/home/sharer/hw_test_ws/src/kobuki/kobuki_auto_docking:/home/sharer/hw_test_ws/src/kobuki/kobuki_bumper2pc:/home/sharer/hw_test_ws/src/kobuki/kobuki_capabilities:/home/sharer/hw_test_ws/src/kobuki/kobuki_description:/home/sharer/hw_test_ws/src/kobuki/kobuki_keyop:/home/sharer/hw_test_ws/src/kobuki/kobuki_rapps:/home/sharer/hw_test_ws/src/kortex_description:/home/sharer/hw_test_ws/src/kortex_hardware:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/robot_configs/m1n6s300_moveit_config:/home/sharer/hw_test_ws/src/moveit/moveit:/home/sharer/hw_test_ws/src/moveit/moveit_commander:/home/sharer/hw_test_ws/src/moveit_msgs:/home/sharer/hw_test_ws/src/gen3_compliant_controllers:/home/sharer/hw_test_ws/src/moveit/moveit_core:/home/sharer/hw_test_ws/src/moveit/moveit_planners/chomp/chomp_motion_planner:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/inverse_kinematics_plugins/ikfast/j2n6s300_ikfast:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/inverse_kinematics_plugins/ikfast/j2s6s300_ikfast:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/inverse_kinematics_plugins/ikfast/j2s7s300_ikfast:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/inverse_kinematics_plugins/ikfast/m1n6s300_ikfast:/home/sharer/hw_test_ws/src/moveit/moveit_planners/chomp/chomp_optimizer_adapter:/home/sharer/hw_test_ws/src/moveit/moveit_planners/moveit_planners:/home/sharer/hw_test_ws/src/moveit/moveit_plugins/moveit_plugins:/home/sharer/hw_test_ws/src/moveit/moveit_ros/moveit_ros:/home/sharer/hw_test_ws/src/moveit/moveit_ros/occupancy_map_monitor:/home/sharer/hw_test_ws/src/moveit/moveit_ros/planning:/home/sharer/hw_test_ws/src/moveit/moveit_plugins/moveit_fake_controller_manager:/home/sharer/hw_test_ws/src/moveit/moveit_kinematics:/home/sharer/hw_test_ws/src/moveit/moveit_planners/ompl:/home/sharer/hw_test_ws/src/moveit/moveit_ros/move_group:/home/sharer/hw_test_ws/src/moveit/moveit_ros/manipulation:/home/sharer/hw_test_ws/src/moveit/moveit_ros/perception:/home/sharer/hw_test_ws/src/moveit/moveit_ros/robot_interaction:/home/sharer/hw_test_ws/src/moveit/moveit_ros/warehouse:/home/sharer/hw_test_ws/src/moveit/moveit_ros/benchmarks:/home/sharer/hw_test_ws/src/moveit/moveit_ros/planning_interface:/home/sharer/hw_test_ws/src/kinova-ros/kinova_moveit/kinova_arm_moveit_demo:/home/sharer/hw_test_ws/src/moveit/moveit_planners/chomp/chomp_interface:/home/sharer/hw_test_ws/src/moveit/moveit_ros/visualization:/home/sharer/hw_test_ws/src/moveit/moveit_runtime:/home/sharer/hw_test_ws/src/moveit/moveit_ros/moveit_servo:/home/sharer/hw_test_ws/src/moveit/moveit_setup_assistant:/home/sharer/hw_test_ws/src/moveit/moveit_plugins/moveit_simple_controller_manager:/home/sharer/hw_test_ws/src/moveit/moveit_plugins/moveit_ros_control_interface:/home/sharer/hw_test_ws/src/moveit/moveit_planners/pilz_industrial_motion_planner_testutils:/home/sharer/hw_test_ws/src/moveit/moveit_planners/pilz_industrial_motion_planner:/home/sharer/hw_test_ws/src/rec_rep:/home/sharer/hw_test_ws/src/recorder:/home/sharer/hw_test_ws/src/sonify_it:/home/sharer/hw_test_ws/src/turtlebot/turtlebot:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_actions:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_apps:/home/sharer/hw_test_ws/src/turtlebot/turtlebot_bringup:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_calibration:/home/sharer/hw_test_ws/src/turtlebot/turtlebot_capabilities:/home/sharer/hw_test_ws/src/turtlebot/turtlebot_description:/home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_gazebo:/home/sharer/hw_test_ws/src/turtlebot_msgs:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_follower:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_navigation:/home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_rapps:/home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_simulator:/home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_stage:/home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_stdr:/home/sharer/hw_test_ws/src/turtlebot/turtlebot_teleop:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_cmd_vel_mux:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_controllers:/home/sharer/hw_test_ws/src/kobuki/kobuki_controller_tutorial:/home/sharer/hw_test_ws/src/kobuki/kobuki_random_walker:/home/sharer/hw_test_ws/src/kobuki/kobuki_safety_controller:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_keyop:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_localization_manager:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_math_toolkit:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_diff_drive_pose_controller:/home/sharer/hw_test_ws/src/yocs_msgs:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_joyop:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_navi_toolkit:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_navigator:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_rapps:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_safety_controller:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_velocity_smoother:/home/sharer/hw_test_ws/src/kobuki/kobuki_node:/home/sharer/hw_test_ws/src/kobuki/kobuki_testsuite:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_virtual_sensor:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_waypoint_provider:/home/sharer/hw_test_ws/src/yujin_ocs/yocs_waypoints_navi:/home/sharer/hw_test_ws/src/yujin_ocs/yujin_ocs:/home/sharer/jl_ws/src:/opt/ros/noetic/share
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=3
++++ '[' 3 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_3'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/1.ros_python_version.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_3
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_3_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_3_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/1.ros_python_version.sh
+++++ export ROS_PYTHON_VERSION=3
+++++ ROS_PYTHON_VERSION=3
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=4
++++ '[' 4 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_4'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/1.ros_version.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_4
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_4_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_4_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/1.ros_version.sh
+++++ export ROS_VERSION=1
+++++ ROS_VERSION=1
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=5
++++ '[' 5 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_5'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/10.rosbuild.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_5
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_5_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_5_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/10.rosbuild.sh
+++++ '[' -z /opt/ros/noetic ']'
+++++ export ROS_ROOT=/opt/ros/noetic/share/ros
+++++ ROS_ROOT=/opt/ros/noetic/share/ros
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=6
++++ '[' 6 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_6'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/10.roslaunch.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_6
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_6_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_6_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/10.roslaunch.sh
+++++ '[' '!' http://localhost:11311 ']'
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=7
++++ '[' 7 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_7'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/99.roslisp.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_7
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_7_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_7_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/99.roslisp.sh
++++++ cat
+++++ PYTHON_CODE_BUILD_ROSLISP_PACKAGE_DIRECTORIES='from __future__ import print_function
+import os
+env_name = '\''CMAKE_PREFIX_PATH'\''
+paths = [path for path in os.environ[env_name].split(os.pathsep)] if env_name in os.environ and os.environ[env_name] != '\'''\'' else []
+workspaces = [path for path in paths if os.path.exists(os.path.join(path, '\''.catkin'\''))]
+paths = []
+for workspace in workspaces:
+    filename = os.path.join(workspace, '\''.catkin'\'')
+    data = '\'''\''
+    with open(filename) as f:
+        data = f.read()
+    if data:
+        paths.append(os.path.join(workspace, '\''share'\'', '\''common-lisp'\''))
+print(os.pathsep.join(paths))'
++++++ /usr/bin/python3 -c 'from __future__ import print_function
+import os
+env_name = '\''CMAKE_PREFIX_PATH'\''
+paths = [path for path in os.environ[env_name].split(os.pathsep)] if env_name in os.environ and os.environ[env_name] != '\'''\'' else []
+workspaces = [path for path in paths if os.path.exists(os.path.join(path, '\''.catkin'\''))]
+paths = []
+for workspace in workspaces:
+    filename = os.path.join(workspace, '\''.catkin'\'')
+    data = '\'''\''
+    with open(filename) as f:
+        data = f.read()
+    if data:
+        paths.append(os.path.join(workspace, '\''share'\'', '\''common-lisp'\''))
+print(os.pathsep.join(paths))'
+++++ export ROSLISP_PACKAGE_DIRECTORIES=/home/sharer/hw_test_ws/devel/share/common-lisp:/home/sharer/jl_ws/devel/share/common-lisp
+++++ ROSLISP_PACKAGE_DIRECTORIES=/home/sharer/hw_test_ws/devel/share/common-lisp:/home/sharer/jl_ws/devel/share/common-lisp
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=8
++++ '[' 8 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_8'
+++++ _envfile=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-gazebo.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_8
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_8_WORKSPACE'
+++++ _envfile_workspace=/home/sharer/hw_test_ws/devel
++++ unset _CATKIN_ENVIRONMENT_HOOKS_8_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/home/sharer/hw_test_ws/devel
++++ . /home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-gazebo.sh
++++++ rospack find turtlebot_gazebo
+++++ : /home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_gazebo/maps/playground.yaml
++++++ rospack find turtlebot_gazebo
+++++ : /home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_gazebo/worlds/playground.world
+++++ export TURTLEBOT_GAZEBO_MAP_FILE
+++++ export TURTLEBOT_GAZEBO_WORLD_FILE
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=9
++++ '[' 9 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_9'
+++++ _envfile=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-navigation.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_9
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_9_WORKSPACE'
+++++ _envfile_workspace=/home/sharer/hw_test_ws/devel
++++ unset _CATKIN_ENVIRONMENT_HOOKS_9_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/home/sharer/hw_test_ws/devel
++++ . /home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-navigation.sh
++++++ rospack find turtlebot_navigation
+++++ : /home/sharer/hw_test_ws/src/turtlebot_apps/turtlebot_navigation/maps/willow-2010-02-18-0.10.yaml
+++++ export TURTLEBOT_MAP_FILE
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=10
++++ '[' 10 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_10'
+++++ _envfile=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-stage.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_10
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_10_WORKSPACE'
+++++ _envfile_workspace=/home/sharer/hw_test_ws/devel
++++ unset _CATKIN_ENVIRONMENT_HOOKS_10_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/home/sharer/hw_test_ws/devel
++++ . /home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-stage.sh
++++++ rospack find turtlebot_stage
+++++ : /home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_stage/maps/maze.yaml
++++++ rospack find turtlebot_stage
+++++ : /home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_stage/maps/stage/maze.world
+++++ export TURTLEBOT_STAGE_MAP_FILE
+++++ export TURTLEBOT_STAGE_WORLD_FILE
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=11
++++ '[' 11 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_11'
+++++ _envfile=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-stdr.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_11
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_11_WORKSPACE'
+++++ _envfile_workspace=/home/sharer/hw_test_ws/devel
++++ unset _CATKIN_ENVIRONMENT_HOOKS_11_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/home/sharer/hw_test_ws/devel
++++ . /home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot-stdr.sh
++++++ rospack find turtlebot_stdr
+++++ : /home/sharer/hw_test_ws/src/turtlebot_simulator/turtlebot_stdr/maps/sparse_obstacles.yaml
+++++ export TURTLEBOT_STDR_MAP_FILE
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=12
++++ '[' 12 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_12'
+++++ _envfile=/home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot.sh
++++ unset _CATKIN_ENVIRONMENT_HOOKS_12
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_12_WORKSPACE'
+++++ _envfile_workspace=/home/sharer/hw_test_ws/devel
++++ unset _CATKIN_ENVIRONMENT_HOOKS_12_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/home/sharer/hw_test_ws/devel
++++ . /home/sharer/hw_test_ws/devel/etc/catkin/profile.d/25.turtlebot.sh
+++++ : kobuki
+++++ : /sys/class/power_supply/BAT0
+++++ : hexagons
+++++ : asus_xtion_pro
+++++ : false
+++++ : /dev/kobuki
+++++ : turtlebot
+++++ : turtlebot
+++++ : '[rocon_apps,' 'turtlebot_rapps]'
+++++ : '[]'
+++++ : '[turtlebot_bringup/admin.interactions,' turtlebot_bringup/documentation.interactions, turtlebot_bringup/pairing.interactions, 'turtlebot_bringup/visualisation.interactions]'
+++++ export TURTLEBOT_BASE
+++++ export TURTLEBOT_BATTERY
+++++ export TURTLEBOT_STACKS
+++++ export TURTLEBOT_3D_SENSOR
+++++ export TURTLEBOT_SIMULATION
+++++ export TURTLEBOT_SERIAL_PORT
+++++ export TURTLEBOT_NAME
+++++ export TURTLEBOT_TYPE
+++++ export TURTLEBOT_RAPP_PACKAGE_WHITELIST
+++++ export TURTLEBOT_RAPP_PACKAGE_BLACKLIST
+++++ export TURTLEBOT_INTERACTIONS_LIST
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=13
++++ '[' 13 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_13'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make.bash
++++ unset _CATKIN_ENVIRONMENT_HOOKS_13
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_13_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_13_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/05.catkin_make.bash
+++++ complete -F _catkin_make catkin_make
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=14
++++ '[' 14 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_14'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/05.catkin_make_isolated.bash
++++ unset _CATKIN_ENVIRONMENT_HOOKS_14
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_14_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_14_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/05.catkin_make_isolated.bash
+++++ complete -F _catkin_make_isolated catkin_make_isolated
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=15
++++ '[' 15 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_15'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/15.rosbash.bash
++++ unset _CATKIN_ENVIRONMENT_HOOKS_15
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_15_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_15_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/15.rosbash.bash
+++++ '[' -z /opt/ros/noetic ']'
+++++ . /opt/ros/noetic/share/rosbash/rosbash
++++++ complete -F _roscomplete_sub_dir -o nospace roscd
++++++ complete -F _roscomplete_sub_dir -o nospace rospd
++++++ complete -F _roscomplete_sub_dir -o nospace rosls
++++++ complete -F _roscomplete_rosmake rosmake
++++++ complete -F _roscomplete_rosclean rosclean
++++++ complete -F _roscomplete_exe rosrun
++++++ complete -F _roscomplete_file rosed
++++++ complete -F _roscomplete_file roscp
++++++ complete -F _roscomplete_file roscat
++++++ complete -F _roscomplete_launch -o filenames roslaunch
++++++ complete -F _roscomplete_test -o filenames rostest
++++++ complete -F _roscomplete_rospack rospack
++++++ complete -F _roscomplete_rosbag -o default rosbag
++++++ complete -F _roscomplete_rosnode rosnode
++++++ complete -F _roscomplete_rosparam rosparam
++++++ complete -F _roscomplete_rostopic rostopic
++++++ complete -F _roscomplete_rosservice rosservice
++++++ complete -F _roscomplete_rosmsg rosmsg
++++++ complete -F _roscomplete_rossrv rossrv
++++++ complete -F _roscomplete_roscreate_pkg roscreate-pkg
++++++ complete -F _roscomplete_roswtf -o filenames roswtf
++++++ complete -F _roscomplete_rosconsole rosconsole
++++++ complete -F _roscomplete_filemv rosmv
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=16
++++ '[' 16 -lt 17 ']'
++++ eval '_envfile=$_CATKIN_ENVIRONMENT_HOOKS_16'
+++++ _envfile=/opt/ros/noetic/etc/catkin/profile.d/20.transform.bash
++++ unset _CATKIN_ENVIRONMENT_HOOKS_16
++++ eval '_envfile_workspace=$_CATKIN_ENVIRONMENT_HOOKS_16_WORKSPACE'
+++++ _envfile_workspace=/opt/ros/noetic
++++ unset _CATKIN_ENVIRONMENT_HOOKS_16_WORKSPACE
++++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
++++ . /opt/ros/noetic/etc/catkin/profile.d/20.transform.bash
++++++ complete
++++++ grep -w rosrun
++++++ awk '{print $3}'
+++++ _sav_transform_roscomplete_rosrun=_roscomplete_exe
+++++ complete -F _roscomplete_rosrun_transform rosrun
++++ unset CATKIN_ENV_HOOK_WORKSPACE
++++ _i=17
++++ '[' 17 -lt 17 ']'
++++ unset _i
++++ unset _CATKIN_ENVIRONMENT_HOOKS_COUNT
++ python3 /home/sharer/hw_test_ws/src/rec_rep/scripts/start_recording.py
+killing /kortex_hardware
+killed
+Mode change response:  success: True
+[INFO] [1722025455.448075]: Recording started. Use Ctrl-C to stop recording...
+[INFO] [1722025481.940025]: Stopping rosbag recording...
+[INFO] [1722025482.339330]: Rosbag recording stopped.
+[INFO] [1722025482.859835]: Successfully killed node: kortex_hardware
