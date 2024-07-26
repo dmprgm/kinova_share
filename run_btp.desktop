@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Motion Replay
+Exec=/home/sharer/hw_test_ws/src/rec_rep/scripts/run_btpgui.sh
+Icon=/home/sharer/hw_test_ws/src/rec_rep/media/replay.png
+Terminal=false
+Path=/home/sharer/hw_test_ws/src/rec_rep/scripts
+Comment=Run the Motion Replay GUI without a terminal
+Categories=Utility;
+MimeType=application/x-desktop;
