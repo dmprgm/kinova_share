@@ -64,6 +64,16 @@ def record_rosbag(bag_name):
         stderr=subprocess.PIPE
     )
 
+def update_position(msg):
+    tmp = np.array(msg.position)[1:]
+    cmd = JointTrajectoryPoint()
+    dof = 7
+    value = np.pi/2
+    tmp[dof - 1] = value
+    cmd.positions = tmp.tolist()
+    cmd.velocities = [0] * len(tmp)
+    cmd_pub.publish(cmd)
+    
 def start_recording():
     global rosbag_proc, cmd_pub, controller_space, tfBuffer
 
@@ -129,7 +139,7 @@ def start_recording():
             cmd_pub = rospy.Publisher(topic, CartesianTrajectoryPoint, queue_size=1)
         else:
             cmd_pub = rospy.Publisher(topic, JointTrajectoryPoint, queue_size=1)
-        rate = rospy.Rate(100.0)
+        rospy.Subscriber('joint_states', JointState, update_position)
 
         bags_directory = '/home/sharer/hw_test_ws/src/rec_rep/bags'
         next_prefix = get_next_bag_prefix(bags_directory)
@@ -143,21 +153,22 @@ def start_recording():
 
         startButton.setEnabled(False)
         stopButton.setEnabled(True)
-        while not rospy.is_shutdown():
-            joint_states = rospy.wait_for_message(
-                "/joint_states", JointState, timeout=None
-            )
-            tmp = np.array(joint_states.position)[1:]
-            print("Current joint state: ", tmp)
-            cmd = JointTrajectoryPoint()
-            # take input from user
-            dof = 7
-            value = 1
-            tmp[dof - 1] = value
-            cmd.positions = tmp.tolist()
-            cmd.velocities = [0] * len(tmp)
-            cmd_pub.publish(cmd)
-            rospy.Rate(40).sleep()
+        rospy.spin()
+        # while not rospy.is_shutdown():
+        #     joint_states = rospy.wait_for_message(
+        #         "/joint_states", JointState, timeout=None
+        #     )
+        #     tmp = np.array(joint_states.position)[1:]
+        #     print("Current joint state: ", tmp)
+        #     cmd = JointTrajectoryPoint()
+        #     # take input from user
+        #     dof = 7
+        #     value = 1
+        #     tmp[dof - 1] = value
+        #     cmd.positions = tmp.tolist()
+        #     cmd.velocities = [0] * len(tmp)
+        #     cmd_pub.publish(cmd)
+        #     rospy.Rate(40).sleep()
             
     except rospy.ROSInterruptException:
         print("program interrupted before completion", file=sys.stderr)
