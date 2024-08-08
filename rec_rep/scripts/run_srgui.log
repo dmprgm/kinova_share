@@ -25,16 +25,16 @@
 +++ '[' -d '' ']'
 +++ _TMPDIR=/tmp
 ++++ mktemp /tmp/setup.sh.XXXXXXXXXX
-+++ _SETUP_TMP=/tmp/setup.sh.99kxpUTNyh
++++ _SETUP_TMP=/tmp/setup.sh.YqDyiJ63nt
 +++ unset _TMPDIR
-+++ '[' 0 -ne 0 -o '!' -f /tmp/setup.sh.99kxpUTNyh ']'
++++ '[' 0 -ne 0 -o '!' -f /tmp/setup.sh.YqDyiJ63nt ']'
 +++ CATKIN_SHELL=bash
 +++ /opt/ros/noetic/_setup_util.py
 +++ _RC=0
 +++ '[' 0 -ne 0 ']'
 +++ unset _RC
 +++ unset _SETUP_UTIL
-+++ . /tmp/setup.sh.99kxpUTNyh
++++ . /tmp/setup.sh.YqDyiJ63nt
 ++++ export CMAKE_PREFIX_PATH=/opt/ros/noetic
 ++++ CMAKE_PREFIX_PATH=/opt/ros/noetic
 ++++ export LD_LIBRARY_PATH=/opt/ros/noetic/lib:/opt/ros/noetic/lib/x86_64-linux-gnu
@@ -95,7 +95,7 @@
 ++++ _CATKIN_ENVIRONMENT_HOOKS_11=/opt/ros/noetic/etc/catkin/profile.d/20.transform.bash
 ++++ export _CATKIN_ENVIRONMENT_HOOKS_11_WORKSPACE=/opt/ros/noetic
 ++++ _CATKIN_ENVIRONMENT_HOOKS_11_WORKSPACE=/opt/ros/noetic
-+++ rm -f /tmp/setup.sh.99kxpUTNyh
++++ rm -f /tmp/setup.sh.YqDyiJ63nt
 +++ unset _SETUP_TMP
 +++ _i=0
 +++ '[' 0 -lt 12 ']'
@@ -380,16 +380,16 @@ print(os.pathsep.join(paths))'
 +++ '[' -d '' ']'
 +++ _TMPDIR=/tmp
 ++++ mktemp /tmp/setup.sh.XXXXXXXXXX
-+++ _SETUP_TMP=/tmp/setup.sh.s5g9bHScC1
++++ _SETUP_TMP=/tmp/setup.sh.6NsLrn1s42
 +++ unset _TMPDIR
-+++ '[' 0 -ne 0 -o '!' -f /tmp/setup.sh.s5g9bHScC1 ']'
++++ '[' 0 -ne 0 -o '!' -f /tmp/setup.sh.6NsLrn1s42 ']'
 +++ CATKIN_SHELL=bash
 +++ /home/sharer/hw_test_ws/devel/_setup_util.py
 +++ _RC=0
 +++ '[' 0 -ne 0 ']'
 +++ unset _RC
 +++ unset _SETUP_UTIL
-+++ . /tmp/setup.sh.s5g9bHScC1
++++ . /tmp/setup.sh.6NsLrn1s42
 ++++ export CMAKE_PREFIX_PATH=
 ++++ CMAKE_PREFIX_PATH=
 ++++ export LD_LIBRARY_PATH=
@@ -480,7 +480,7 @@ print(os.pathsep.join(paths))'
 ++++ _CATKIN_ENVIRONMENT_HOOKS_16=/opt/ros/noetic/etc/catkin/profile.d/20.transform.bash
 ++++ export _CATKIN_ENVIRONMENT_HOOKS_16_WORKSPACE=/opt/ros/noetic
 ++++ _CATKIN_ENVIRONMENT_HOOKS_16_WORKSPACE=/opt/ros/noetic
-+++ rm -f /tmp/setup.sh.s5g9bHScC1
++++ rm -f /tmp/setup.sh.6NsLrn1s42
 +++ unset _SETUP_TMP
 +++ _i=0
 +++ '[' 0 -lt 17 ']'
@@ -822,8 +822,8 @@ print(os.pathsep.join(paths))'
 +++ CATKIN_ENV_HOOK_WORKSPACE=/opt/ros/noetic
 +++ . /opt/ros/noetic/etc/catkin/profile.d/20.transform.bash
 +++++ complete
-+++++ grep -w rosrun
 +++++ awk '{print $3}'
++++++ grep -w rosrun
 ++++ _sav_transform_roscomplete_rosrun=_roscomplete_exe
 ++++ complete -F _roscomplete_rosrun_transform rosrun
 +++ unset CATKIN_ENV_HOOK_WORKSPACE
@@ -835,7 +835,9 @@ print(os.pathsep.join(paths))'
 killing /kortex_hardware
 killed
 Mode change response:  success: True
-[INFO] [1722025455.448075]: Recording started. Use Ctrl-C to stop recording...
-[INFO] [1722025481.940025]: Stopping rosbag recording...
-[INFO] [1722025482.339330]: Rosbag recording stopped.
-[INFO] [1722025482.859835]: Successfully killed node: kortex_hardware
+[INFO] [1723070048.650612]: Recording started. Use Ctrl-C to stop recording...
+shutdown request: user request
+[INFO] [1723070072.926031]: Stopping rosbag recording...
+[INFO] [1723070073.339819]: Rosbag recording stopped.
+[INFO] [1723070073.958653]: Successfully killed node: kortex_hardware
+program interrupted before completion

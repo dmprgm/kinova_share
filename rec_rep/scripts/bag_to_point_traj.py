@@ -5,6 +5,8 @@ import os # for user input
 import sys
 import rospy
 import rosbag
+import actionlib
+from control_msgs.msg import FollowJointTrajectoryAction, FollowJointTrajectoryActionGoal, FollowJointTrajectoryResult, JointTolerance, FollowJointTrajectoryGoal
 from sensor_msgs.msg import JointState
 from std_msgs.msg import Float64MultiArray
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
@@ -110,6 +112,7 @@ def main(mode, bag_file):
         sys.exit(1)
 
     rospy.loginfo("Starting bag_to_point node")
+ 
 
     # Wait for necessary services
     rospy.wait_for_service('controller_manager/switch_controller')
@@ -138,7 +141,9 @@ def main(mode, bag_file):
         
     # kortex hardware should be up and running at this point. moving on
     rospy.init_node('bag_to_point')
-
+    action_client = actionlib.SimpleActionClient('velocity_controller/follow_joint_trajectory', FollowJointTrajectoryAction)
+    action_client.wait_for_server()
+    rospy.loginfo('Action Client Ready.')
     # Set up signal handlers for shutdown (fix for unresponsive Ctrl-C)
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
@@ -146,7 +151,7 @@ def main(mode, bag_file):
     # Publishers for position and velocity controllers
     if mode == "position":
         position_pub = rospy.Publisher(topic, Float64MultiArray, queue_size=10)
-    elif mode == "velocity":
+    elif mode == "velocity" or mode == 'effort':
         velocity_pub = rospy.Publisher(topic, JointTrajectory, queue_size=10)
 
     try:
@@ -157,9 +162,15 @@ def main(mode, bag_file):
         # Print the current working directory for debugging
         print(f"Current working directory: {os.getcwd()}")
         count = 0
+        base = 0
+        scale = 0.1
+
         for topic, msg, t in bag.read_messages(topics=['/joint_states']):
-            if count == 0:
-                base = msg.header.stamp
+            if count %100 ==0:
+                base = 0
+                trajectory_msg = JointTrajectory()
+                trajectory_msg.joint_names = ['joint_1', 'joint_2', 'joint_3', 'joint_4', 'joint_5', 'joint_6', 'joint_7']            
+                trajectory_msg.points = []
             if topic == '/joint_states':
                 if mode == "position":
                     # Create Float64MultiArray message for position
@@ -168,19 +179,34 @@ def main(mode, bag_file):
                     position_pub.publish(position_msg)
                     rospy.loginfo(f"Published position message with positions {msg.position}")
                 elif mode == "velocity":
-                    # Create JointTrajectory message for velocity
-                    trajectory_msg = JointTrajectory()
-                    trajectory_msg.joint_names = ['joint_1', 'joint_2', 'joint_3', 'joint_4', 'joint_5', 'joint_6', 'joint_7']
+                    # Create JointTrajectory point
                     point = JointTrajectoryPoint()
                     point.positions = list(msg.position[1:8])
                     point.velocities = list(msg.velocity[1:8])
-                    point.time_from_start = rospy.Duration(0.005)  # Adjust as needed
-                    trajectory_msg.points = [point]
-                    velocity_pub.publish(trajectory_msg)
-                    rospy.loginfo(f"Published velocity message with positions {msg.position} and velocities {msg.velocity}")
-                # Sleep to simulate real-time publishing
-                rospy.Rate(50000).sleep()  # Adjust the sleep time as needed
-            count+=1
+                    point.effort = list(msg.effort[1:8])
+                    base += 1*scale
+                    #nsecs_duration = msg.header.stamp.nsecs-base.nsecs
+                    point.time_from_start = rospy.Duration(base)  # Adjust as needed
+                    trajectory_msg.points.append(point)
+            if count%100==0 and count!=0:
+                goal = FollowJointTrajectoryGoal()
+                goal.trajectory = trajectory_msg
+                #velocity_pub.publish(trajectory_msg)
+                action_client.send_goal_and_wait(goal)
+                result = action_client.get_result()
+                #print(result)
+                #rospy.Rate(1).sleep()
+            count +=1
+            print(count)
+            
+
+                # rospy.loginfo(f"Added Point")
+                # sleep to simulate real-time publishing
+                # rospy.sleep(0.0005)  # Adjust the sleep time as needed
+        #print(trajectory_msg.points)
+        #velocity_pub.publish(trajectory_msg)
+        print('Added artificial sleep')
+        rospy.sleep(60)
 
         bag.close()
         rospy.logerr("Finished processing bag file.")

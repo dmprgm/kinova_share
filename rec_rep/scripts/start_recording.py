@@ -77,7 +77,8 @@ def start_recording():
             stderr=log_file
         )
 
-    time.sleep(2)
+    time.sleep(3)
+    
 
     mode = "effort"
     topic = ""
@@ -142,12 +143,30 @@ def start_recording():
 
         startButton.setEnabled(False)
         stopButton.setEnabled(True)
-
+        while not rospy.is_shutdown():
+            joint_states = rospy.wait_for_message(
+                "/joint_states", JointState, timeout=None
+            )
+            tmp = np.array(joint_states.position)[1:]
+            print("Current joint state: ", tmp)
+            cmd = JointTrajectoryPoint()
+            # take input from user
+            dof = 7
+            value = 1
+            tmp[dof - 1] = value
+            cmd.positions = tmp.tolist()
+            cmd.velocities = [0] * len(tmp)
+            cmd_pub.publish(cmd)
+            rospy.Rate(40).sleep()
+            
     except rospy.ROSInterruptException:
         print("program interrupted before completion", file=sys.stderr)
         stop_recording()
     except KeyboardInterrupt:
         stop_recording()
+
+
+
 
 def stop_recording():
     global rosbag_proc
@@ -170,7 +189,7 @@ def run_gui():
 
     app = QApplication(sys.argv)
     window = QWidget()
-    window.setWindowTitle('Robot Control GUI')
+    window.setWindowTitle('Record Robot Motion')
 
     taskRadio = QRadioButton('Task')
     jointRadio = QRadioButton('Joint')
