@@ -78,18 +78,7 @@ def start_recording():
     global rosbag_proc, cmd_pub, controller_space, tfBuffer
 
     controller_space = 'task' if taskRadio.isChecked() else 'joint'
-
-    with open("/tmp/roslaunch_gen3_compliant_controllers.log", "w") as log_file:
-        hardware_launch = subprocess.Popen(
-            ["roslaunch", "gen3_compliant_controllers", "controller.launch", 
-             "ip_address:=192.168.1.10", "dof:=7", f"controller_type:={controller_space}"],
-            stdout=log_file,
-            stderr=log_file
-        )
-
-    time.sleep(3)
     
-
     mode = "effort"
     topic = ""
     if controller_space == "task":
@@ -153,22 +142,20 @@ def start_recording():
 
         startButton.setEnabled(False)
         stopButton.setEnabled(True)
-        rospy.spin()
-        # while not rospy.is_shutdown():
-        #     joint_states = rospy.wait_for_message(
-        #         "/joint_states", JointState, timeout=None
-        #     )
-        #     tmp = np.array(joint_states.position)[1:]
-        #     print("Current joint state: ", tmp)
-        #     cmd = JointTrajectoryPoint()
-        #     # take input from user
-        #     dof = 7
-        #     value = 1
-        #     tmp[dof - 1] = value
-        #     cmd.positions = tmp.tolist()
-        #     cmd.velocities = [0] * len(tmp)
-        #     cmd_pub.publish(cmd)
-        #     rospy.Rate(40).sleep()
+        #rospy.spin()
+        while not rospy.is_shutdown():
+            joint_states = rospy.wait_for_message("/joint_states", JointState, timeout=None)
+            tmp = np.array(joint_states.position)[1:]
+            print("Current joint state: ", tmp)
+            cmd = JointTrajectoryPoint()
+		    # take input from user
+            dof = 7
+            value = 1
+            tmp[dof - 1] = value
+            cmd.positions = tmp.tolist()
+            cmd.velocities = [0] * len(tmp)
+            cmd_pub.publish(cmd)
+            rospy.sleep(.5)
             
     except rospy.ROSInterruptException:
         print("program interrupted before completion", file=sys.stderr)
@@ -241,10 +228,19 @@ def run_gui():
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
+    with open("/tmp/roslaunch_gen3_compliant_controllers.log", "w") as log_file:
+        hardware_launch = subprocess.Popen(
+            ["roslaunch", "gen3_compliant_controllers", "controller.launch", 
+             "ip_address:=192.168.1.10", "dof:=7", "controller_type:=joint"], #type will always be joint
+            stdout=log_file,
+            stderr=log_file
+        )
+    time.sleep(3)
+
+    print("attempted to start controller")
+
     rospy.init_node('start_recording')
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
 
     run_gui()
-
-
