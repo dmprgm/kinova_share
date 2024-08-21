@@ -90,27 +90,6 @@ pdata.cogX = store_cog(:,1);
 pdata.cogY = store_cog(:,2);
 pdata.cogZ = store_cog(:,3);
 
-
-ee_pos = [store_position(1,1), store_position(1,2),store_position(1,3)];
-%FA Pos
-homo_fa = getTransform(kinova, pos_joints(2:8,1), 'ForeArm_Link');
-position_fa = tform2trvec(homo);
-
-%Half Arm Link 1 Pos
-
-%Base Pos
-homo_ha = getTransform(kinova, pos_joints(2:8,1), 'HalfArm1_Link');
-position_ha = tform2trvec(homo_ha);
-
-
-homo_ha = getTransform(kinova, pos_joints(2:8,1), 'Shoulder_Link');
-position_base = tform2trvec(homo_ha);
-
-consolidate = [position_base; position_ha; position_fa;  ee_pos];
-show(kinova, pos_joints(2:8,1),'PreservePlot',false,'FastUpdate',true);
-hold on
-h = fill3(consolidate(:,1),consolidate(:,2),consolidate(:,3),'r','FaceAlpha',0.2);
-
 %Simple Animation/ Playback
 r = rateControl(60);
 for i = 1:11:len
@@ -118,17 +97,17 @@ for i = 1:11:len
     
     ee_pos = [store_position(i,1), store_position(i,2),store_position(i,3)];
     %FA Pos
-    homo_fa = getTransform(kinova, pos_joints(2:8,i), 'HalfArm2_Link');
+    homo_fa = getTransform(kinova, pos_joints(2:8,i), 'ForeArm_Link');
     position_fa = tform2trvec(homo);
 
     %Half Arm Link 1 Pos
     homo_ha = getTransform(kinova, pos_joints(2:8,i), 'HalfArm1_Link');
     position_ha = tform2trvec(homo_ha);
     %Base Pos
-    homo_ha = getTransform(kinova, pos_joints(2:8,1), 'Shoulder_Link');
-    position_base = tform2trvec(homo_ha);
-    consolidate = [position_base; position_ha; position_fa;  ee_pos];
-    set(h, 'XData', consolidate(:,1), 'YData', consolidate(:,2), 'ZData', consolidate(:,3));
+    position_base = [0 0 0];
+    consolidate = [ee_pos; homo_fa; homo_ha; position_base;]
+    hold on
+    fill3(ee_pos,position_fa,position_base,'r');
 
     drawnow;
     waitfor(r);
