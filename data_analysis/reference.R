@@ -75,7 +75,7 @@ library(readr)
 # a lot of fluff information that isn't essential for us to process the data and also account for
 # any erroneous chunks. 
 
-clean_data <- read_csv("C:/Users/nnamd/Documents/research/omic/corrected.csv")
+clean_data <- read_csv("C:/Users/nnamd/Documents/research/omic/nameofurfile.csv")
 
 #A lot of what I've semi-implemented here assume you're 
 
@@ -99,7 +99,7 @@ double_boxplot <- function(phrase){
     convert_as_factor(id, condition, type) 
   
   #Setting up graphs
-  new_target$condition <- factor(new_target$condition , levels=c('B', 'LB', 'TD', 'B2', 'UT', 'LF'))
+  #new_target$condition <- factor(new_target$condition , levels=c('B', 'LB', 'TD', 'B2', 'UT', 'LF'))
   return(qplot(x=type, y=total, data = new_target[complete.cases(new_target),], geom="boxplot", fill=type)+geom_boxplot()+
            scale_fill_npg() + xlab("CATEGORY") + ylab("VALUE") +stat_summary(fun.y=mean, geom="point", size=4,shape=3,position=position_dodge(width=0.75))+
            theme(text = element_text(size = 12, family="Times New Roman"),panel.border = element_rect(color = "black", fill = NA, size = 1))+
@@ -115,11 +115,7 @@ single_boxplot <- function(phrase, opposite){
   target <- clean_data[ , grepl( phrase , names( clean_data ) ) ]%>%
     mutate_all(as.numeric) %>% select(-contains(do_not_include))
   
-  #Flips values
-  if (opposite==TRUE){
-    v <- colnames(target)
-    target <- 9-target[v]
-  }
+  
   for_row_names <- names(target)
   target <- cbind(target,rownames(target))
   target$id <- clean_data$ResponseId
@@ -130,7 +126,9 @@ single_boxplot <- function(phrase, opposite){
     separate(category, into=c('condition','type'),remove=TRUE, extra='merge') %>%
     mutate(across(where(is.character), str_remove_all, pattern = fixed(" ")))%>%
     convert_as_factor(id, condition, type) 
+  
   new_target$condition <- factor(new_target$condition , levels=c('B', 'B2', 'LB', 'UT', 'TD','LF'))
+  
   return(qplot(x=condition, y=total, data = new_target[complete.cases(new_target),], geom="boxplot", fill=condition)+ geom_boxplot()+
            scale_fill_npg() + xlab("CONDITION") + ylab("VALUE") + ylim(0,9) +
            theme(text = element_text(size = 12, family="Times New Roman"),panel.border = element_rect(color = "black", fill = NA, size = 1))+ 
