@@ -1,0 +1,33 @@
+"ResponseId","Q56","Throwaway Likerts_1","Throwaway Likerts_2","Throwaway Likerts_3","Light Likerts _1","Light Likerts _2","Light Likerts _3","Direct Likerts _1","Direct Likerts _2","Direct Likerts _3","Indirect Likerts _1","Indirect Likerts _2","Indirect Likerts _3","Sustained Likerts_1","Sustained Likerts_2","Sustained Likerts_3","Sudden Likerts _1","Sudden Likerts _2","Sudden Likerts _3","Bound Likerts _1","Bound Likerts _2","Bound Likerts _3","Free Likerts _1","Free Likerts _2","Free Likerts _3","Strong Likerts_1","Strong Likerts_2","Strong Likerts_3","Laban_1","AGE","GENDER","COUNTRY AFFL","COUNTRY AFFL _4_TEXT","HOMETOWN","RACE","RACE_7_TEXT","WORK","EDUCATION","HIGHER EDUCATION BI","Prior"
+"R_3O9sbSEFRp3IvBs",0,,,,5,6,6,7,6,6,7,7,7,4,6,5,5,5,6,6,6,7,7,7,7,6,5,6,5,19,1,1.0,,"San Pedro, California, USA","2",,"8",2,1,0
+"R_7Ih3GpYlKC6ljqY",1,5,6,6,5,6,5,5,6,5,7,7,7,7,7,7,4,7,5,7,7,6,5,6,6,6,5,5,6,33,1,1.0,,"chino, ca, usa","4",,"6,8",5,1,1
+"R_5PYIPgatvKldTNu",2,2,7,6,7,7,7,7,7,7,5,6,5,6,7,7,6,7,6,6,6,6,7,7,7,5,3,5,5,19,1,1.0,,"Burlington, North Carolina, United States","6",,"8",3,1,0
+"R_5oelfCTWpp4hRER",3,5,6,6,6,7,7,5,7,5,6,6,6,6,7,6,5,7,6,3,6,4,5,6,5,2,6,4,5,21,4,1.0,,"South Pasadena CA ","6",,"8",3,1,1
+"R_6UEyaBjtdljBv7X",4,6,6,6,6,5,6,6,6,6,5,6,5,6,7,6,6,6,7,7,6,6,7,7,7,7,1,7,5,19,1,1.0,,"Rockville, MD, United States","4",,"8",3,1,1
+"R_6uH2W0dZmiYgpln",5,6,5,6,6,6,5,5,6,6,6,6,6,5,6,5,1,4,2,5,6,5,6,6,6,5,6,5,6,21,1,1.0,,"Lawrenceville, GA, United States","2,3,4",,"6",3,1,1
+"R_7jfAqqr3ZOc1AfN",6,7,7,7,,,,7,7,7,5,6,5,5,7,7,4,7,6,,,,,,,,,,6,54,4,1.0,,"Albany, OR","6",,"10",5,0,0
+"R_7OGYKFcDQjaNHUD",7,5,7,7,7,7,7,7,7,7,6,7,6,6,7,6,5,7,6,6,7,7,6,7,6,6,7,6,6,21,1,1.0,,"Tacoma, Washington, United States","6",,"8",4,1,0
+"R_3DcEa7ohdYGQqcj",8,6,7,7,6,7,7,7,7,7,6,7,6,7,6,6,6,6,6,7,7,7,7,7,7,7,6,6,5,21,4,1.4,"India","Corvallis, OR, USA","2",,"8",5,1,0
+"R_1Vgkh3TmeL3FGmd",9,5,6,6,6,6,6,6,6,6,6,6,6,5,6,5,5,6,6,5,6,6,5,6,5,6,6,6,5,28,1,1.0,,"Corbett, OR, Multnomah County","6",,"8",5,1,0
+"R_6qlEhD1Z9znR8tY",10,6,7,6,7,7,7,7,7,7,7,6,6,6,7,7,5,6,7,7,7,7,7,7,7,7,6,7,6,27,1,1.4,"India","Pune, Maharashtra, India","2",,"8",7,1,1
+"R_6hNDQpnIDxvNglP",11,6,7,7,6,7,7,6,7,6,7,7,7,5,7,6,7,7,7,6,7,6,5,7,5,7,7,7,7,20,4,1.0,,"Bedford, New Hampshire, USA","2",,"8",2,1,1
+"R_67y8NRLcLgRMe9F",12,6,5,5,7,6,7,6,5,6,6,7,7,5,6,5,7,7,7,7,7,7,7,6,6,7,6,6,6,20,4,1.0,,"Pleasant Hill, OR, USA","2,4",,"8",3,1,1
+"R_6btOuXXgeAC6bhn",13,7,6,7,6,7,6,6,7,6,7,5,7,5,6,6,6,6,7,7,7,7,7,5,7,7,7,7,7,22,1,1.4,"Brazil","Manhattan Beach, CA, USA","4,6",,"8",3,1,0
+"R_7R2eZuDvVdwA7I8",14,6,6,6,7,7,6,6,7,6,6,7,6,5,6,6,6,7,6,5,6,6,7,7,6,6,5,5,6,19,4,1.0,,"El Paso, Texas, United States","4",,"8",3,1,1
+"R_1k1IpCfDNdLD02Z",15,6,7,6,6,6,6,6,7,6,3,6,5,7,7,7,7,3,7,5,6,5,7,6,6,6,3,6,6,23,1,4.0,"India","New Delhi, Delhi, India","7","South Asian","8",5,1,1
+"R_22JIe36ibij18zD",16,5,5,5,6,6,6,5,6,5,5,6,5,5,6,5,5,6,5,5,5,5,6,5,6,5,6,6,5,32,4,1.0,,"Lawrence, KS, USA","6",,"4,8",6,1,0
+"R_6q9rsanXU2SK4vr",17,6,7,7,5,7,6,6,7,5,4,7,5,6,7,6,5,7,5,7,7,7,6,7,5,6,7,6,6,49,1,1.0,,"Morgantown, WV, USA","6",,"3",5,0,0
+"R_5F2dOhf1gy5ewJb",18,5,7,7,6,7,7,6,7,7,7,7,7,6,7,7,5,7,6,5,7,7,7,7,7,7,7,7,6,19,4,1.0,,,"2",,"15",3,1,1
+"R_3BLjFZIzkfGxw3v",19,5,5,6,6,5,6,6,6,6,6,6,6,6,6,6,6,6,6,5,6,6,6,6,6,6,6,6,6,50,4,1.0,,"Pacifica, California, USA","2",,"12",6,0,0
+"R_7EnguDjD4lzM5yC",20,2,5,5,6,6,7,3,7,6,5,6,6,6,4,4,5,5,3,6,5,7,4,6,4,4,6,7,5,20,4,1.0,,"Chicago, IL , USA","4",,"8",3,1,0
+"R_3flPZYjyBpvY59w",21,5,7,6,,,,,,,6,7,6,,,,5,7,6,7,7,6,4,7,6,4,4,4,6,64,4,1.0,,"Sleepy Eye, Minnesota USA","6",,"4",5,0,0
+"R_6xJLqZS8MlCzx9T",22,6,6,6,7,6,6,7,6,6,7,6,5,6,6,6,5,6,5,6,6,5,4,6,5,6,6,5,7,23,1,4.0,"india","Thane,maharashtra,india","2",,"3",5,1,0
+"R_6BkzO2ANLTFnCcR",23,4,7,6,5,6,6,6,6,6,6,6,6,5,6,6,6,6,6,5,6,6,6,6,6,5,6,6,6,20,4,1.0,,"Tacoma, WA, US","6",,"5,12,15",4,1,0
+"R_63rMtrI8CjvsV96",24,7,7,7,7,7,7,7,7,7,7,7,7,6,7,7,6,7,6,7,7,7,7,7,7,5,5,5,7,24,4,1.0,,"San Antonio, Texas, USA","3",,"8",5,1,1
+"R_1c7z53tNC1068KX",25,6,7,7,6,7,6,6,7,6,6,7,6,6,7,6,5,7,5,5,7,6,7,7,6,5,3,5,5,23,1,4.0,"India","Surat, Gujarat, India","7","Indian","8",5,1,0
+"R_3EgLX5OVIYqgBEK",26,6,7,6,5,7,6,7,6,6,6,7,6,5,7,7,6,6,5,6,7,7,6,7,7,6,5,6,7,34,2,1.0,,"Western united states, colorado","6",,"3,8",6,1,1
+"R_1uWACXfhv1FFi5w",27,5,6,5,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,5,5,5,7,57,1,1.0,,"Irwin, PA, USA","6",,"3,12",7,1,0
+"R_1wucZg0Gpj4Nifp",28,5,6,5,7,7,7,5,6,5,5,6,6,6,7,7,5,7,5,4,5,4,6,6,6,6,5,7,5,33,1,1.0,,"chino, ca, usa","4",,"8",5,1,0
+"R_63xsYqY9ZOwQJud",29,7,7,7,7,7,7,7,7,6,7,7,7,7,7,7,6,7,6,7,7,7,6,7,6,7,7,7,6,57,1,1.0,,"Tangent, OR  USA","6",,"3",5,1,0
+"R_3tMYYlHqQaGyUCJ",30,6,6,6,6,7,6,6,7,6,6,7,6,5,7,6,5,7,6,5,7,6,7,7,7,5,7,5,6,20,4,1.0,,"Denver, CO, USA","6",,"8",3,1,0
+"R_57mm8QAZrGVFmyy",31,5,5,4,6,6,6,6,6,6,3,6,5,3,3,3,5,6,6,5,6,5,6,6,6,6,6,6,3,20,4,1.0,,"OREGON ","4",,"1,14",3,1,0
