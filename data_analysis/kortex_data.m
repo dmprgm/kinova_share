@@ -1,8 +1,12 @@
 %Get csvs
 trials = dir("study_csv");
+
+kinova = loadrobot("kinovaGen3");
+kinova.DataFormat = 'col';
+showdetails(kinova)
 %finalData = table('VariableNames',[''])
-groupData = array2table(zeros(0,18));
-groupData.Properties.VariableNames = {'id','condition', 'Yaw','Pitch', 'Roll','TwistX','TwistY', 'TwistZ','AvgVelcoity', 'MaxVelocity', 'AvgAccel', 'MaxAccel', 'AvgArea', 'COGZ', 'PathLengthDifference', 'RangeX', 'RangeY', 'RangeZ'};
+groupData = array2table(zeros(0,26));
+groupData.Properties.VariableNames = {'id','condition', 'Yaw','Pitch', 'Roll','TwistX','TwistY', 'TwistZ','AvgVelcoity', 'MaxVelocity', 'AvgAccel', 'MaxAccel', 'AvgArea', 'COGZ', 'PathLengthDifference', 'RangeX', 'RangeY', 'RangeZ','TimeElapsed', 'Joint7_Distance','Joint6_Distance','Joint5_Distance','Joint4_Distance','Joint3_Distance','Joint2_Distance','Joint1_Distance'};
 all_data = [];
 for i=1:length(trials)
     trial = trials(i).name;
@@ -12,7 +16,7 @@ for i=1:length(trials)
         part_cond = new{1,1}
         final = split(part_cond,'_');
         id = final{1,1};
-        cond = final{2,1};
+        cond = final{2,1}(1);
         T = readtable(append('study_csv/',trial));
 
         if ~isempty(T)
@@ -24,21 +28,23 @@ for i=1:length(trials)
             vel_joints = splitColumn(T.Velocity);
             %eff_joints = splitColumn(T.Effort);
 
-            kinova = loadrobot("kinovaGen3");
-            kinova.DataFormat = 'col';
             %% SETUP STORAGE
             store_speed = [];
             store_position = [];
             store_cog = [];
             store_time = [];
             store_area = [];
-
+            store_config = [];
+            
 
             len = length(pos_joints);
             for i= 1:11:len
                 store_time = [store_time; time(i)];
-
+        
                 config = pos_joints(2:8,i);
+                store_config = [store_config; config'];
+                
+                
                 %Calculate position
                 homo = getTransform(kinova, config, 'EndEffector_Link');
                 ee_pos = tform2trvec(homo);
@@ -68,6 +74,13 @@ for i=1:length(trials)
                 consolidate = [ee_pos;  position_fa; position_ha; position_base];
                 area = area3D(consolidate(:,1),consolidate(:,2),consolidate(:,3));
                 store_area = [store_area; area];
+            end
+            
+            store_distance = [0 0 0 0 0 0 0];
+            for i=2:length(store_config)
+                angle_difference = abs(store_config(i,:) - store_config(i-1,:));
+                new_distance = store_distance(i-1,:)+ angle_difference;
+                store_distance = [store_distance; new_distance];
             end
             time = store_time;
             pdata = table(time);
@@ -109,16 +122,28 @@ for i=1:length(trials)
 
             %Set Area
             pdata.area = store_area;
-            rangeX = max(pdata.Xposition) - min(pdata.Xposition);
-            rangeY = max(pdata.Yposition) - min(pdata.Yposition);
-            rangeZ = max(pdata.Zposition) - min(pdata.Zposition);
+            rangeX = abs(max(pdata.Xposition) - min(pdata.Xposition));
+            rangeY = abs(max(pdata.Yposition) - min(pdata.Yposition));
+            rangeZ = abs(max(pdata.Zposition) - min(pdata.Zposition));
 
 
             full = arclength(store_position(:,1), store_position(:,2),store_position(:,3));
             first_last = [store_position(1,:); store_position(height(store_position),:)];
             shortest = arclength(first_last(:,1), first_last(:,2), first_last(:,3));
             difference = full - shortest;
-            cell = {id, cond, mean(pdata.yaw), mean(pdata.pitch), mean(pdata.roll), mean(pdata.twistX), mean(pdata.twistY), mean(pdata.twistZ), mean(pdata.speedNorm), max(pdata.speedNorm),mean(pdata.accelNorm),max(pdata.accelNorm),mean(pdata.area),mean(pdata.cogZ), difference, rangeX, rangeY, rangeZ};
+            
+            %Joint Change in Position
+            joint_difference = pos_joints(2:8,length(pos_joints)) - pos_joints(2:8,1);
+            dis_len = length(store_distance);
+            joint_7 = store_distance(dis_len,1);
+            joint_6 = store_distance(dis_len,2);
+            joint_5 = store_distance(dis_len,3);
+            joint_4 = store_distance(dis_len,4);
+            joint_3 = store_distance(dis_len,5);
+            joint_2 = store_distance(dis_len,6);
+            joint_1 = store_distance(dis_len,7);
+
+            cell = {id, cond, mean(pdata.yaw), mean(pdata.pitch), mean(pdata.roll), mean(pdata.twistX), mean(pdata.twistY), mean(pdata.twistZ), mean(pdata.speedNorm), max(pdata.speedNorm),mean(pdata.accelNorm),max(pdata.accelNorm),mean(pdata.area),mean(pdata.cogZ), difference, rangeX, rangeY, rangeZ, time(length(time),1), joint_7,joint_6,joint_5,joint_4,joint_3,joint_2,joint_1};
             groupData = [groupData;cell];
 
         end
