@@ -174,12 +174,12 @@ def main(mode, bag_file):
                     point = JointTrajectoryPoint()
                     point.positions = list(msg.position[1:8])
                     point.velocities = list(msg.velocity[1:8])
-                    point.time_from_start = rospy.Duration(0.005)  # Adjust as needed
+                    point.time_from_start = rospy.Duration(0.001)  # Adjust as needed
                     trajectory_msg.points = [point]
                     velocity_pub.publish(trajectory_msg)
                     rospy.loginfo(f"Published velocity message with positions {msg.position} and velocities {msg.velocity}")
                 # Sleep to simulate real-time publishing
-                rospy.Rate(50000).sleep()  # Adjust the sleep time as needed
+                rospy.Rate(10000).sleep()  # Adjust the sleep time as needed
             count+=1
 
         bag.close()
