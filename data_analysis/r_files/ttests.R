@@ -26,7 +26,7 @@ head(clean_data)
 # List of variables to process
 variables <- c("Yaw", "Pitch", "Roll", "AvgVelocity", "MaxVelocity",
                "AvgAccel", "MaxAccel", "AvgArea", "COGZ", "PathLengthDifference", "RangeX", 
-               "RangeY", "RangeZ", "TimeElapsed", "Joint7_Distance", "Joint6_Distance", 
+               "RangeY", "RangeZ", "TimeElapsed", "Joint7_Distance", "Joint6_Distance", "Joint5_Distance",
                "Joint4_Distance", "Joint3_Distance", "Joint2_Distance", 
                "Joint1_Distance")
 
@@ -55,9 +55,9 @@ single_boxplot <- function(var){
   
   anova_table <- get_anova_table(res.aov)
   
-  # Export the ANOVA table to a CSV file
-  #anova_filename <- paste0("One_way_ANOVA_results_", var, ".csv")
-  #write_csv(anova_table, anova_filename)
+  # # Export the ANOVA table to a CSV file
+  # anova_filename <- paste0("One_way_ANOVA_results_", var, ".csv")
+  # write_csv(anova_table, file.path(folder_path, anova_filename))
   
   print(anova_table)
   
@@ -69,8 +69,8 @@ single_boxplot <- function(var){
   ranova_table <- get_anova_table(res.raov)
   
   # Export the ANOVA table to a CSV file
-  #ranova_filename <- paste0("Repeated_Measures_ANOVA_results_", var, ".csv")
-  #write_csv(ranova_table, ranova_filename)
+  ranova_filename <- paste0("Repeated_Measures_ANOVA_results_", var, ".csv")
+  # write_csv(ranova_table, file.path(folder_path, ranova_filename))
   
   print(ranova_table)
   
@@ -85,73 +85,39 @@ single_boxplot <- function(var){
       p.adjust.method = "bonferroni"
     )
   
-  # Filter for specific comparisons: 
+  # Filter for specific comparisons:
   specific_comparisons <- pwc |> 
-    filter((group1 == "A" & group2 == "B") |
-             (group1 == "C" & group2 == "D") |
-             (group1 == "E" & group2 == "F") |
+    filter((group1 == "A" & group2 == "H") |
+             (group1 == "C" & group2 == "G") |
+             (group1 == "E" & group2 == "D") |
              (group1 == "G" & group2 == "H")) |>
     select(group1, group2, p.adj.signif, p.adj)
   
   # Define y-axis limits to prevent altering the range
-  y_max <- max(target$value, na.rm = FALSE)
-  y_limits <- c(min(target$value, na.rm = TRUE), y_max + 3)  # Adding space for annotations
+  y_max <- max(target$value, na.rm = TRUE)
+  y_limits <- c(min(target$value, na.rm = TRUE), y_max + 1)  # Adding space for annotations
   
   # Define a fixed y-position for the p-values to avoid affecting the box plots
   fixed_y_position <- y_max  # Adjust as necessary to avoid overlap
   
   # Export the t-test results to a CSV file
-  #ttest_filename <- paste0("t_test_results_", var, ".csv")
-  #write_csv(pwc, ttest_filename)
+  ttest_filename <- paste0("t_test_results_", var, ".csv")
+  write_csv(pwc, file.path(folder_path, ttest_filename)) 
   print(pwc)
   
-  # Plot formatting
-  p <- target |> na.omit() |>
-    ggplot(aes(x = condition, y = value, fill = condition)) +
-    geom_boxplot(width = 0.7, color = "black", alpha = 0.7, outlier.size = 2, outlier.shape = 16) +  # Show outliers and adjust size
-    stat_summary(fun = mean, geom = "point", size = 3, shape = 23, fill = "white", color = "black") + # Mean points with distinct style
-    scale_fill_npg() +
-    xlab("CONDITION") +
-    ylab("VALUE") +
-    ggtitle("User Input Comparison", subtitle = var) +
-    theme_minimal(base_family = "Inter", base_size = 14) +
-    theme(
-      panel.background = element_rect(fill = "whitesmoke", color = NA),
-      plot.background = element_rect(fill = "white", color = NA),
-      panel.border = element_rect(color = "black", fill = NA, size = 1),
-      axis.title.x = element_text(face = "bold", size = 12),
-      axis.title.y = element_text(face = "bold", size = 12),
-      axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 10), # Rotate x-axis labels to prevent overlap
-      plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
-      plot.subtitle = element_text(size = 12, hjust = 0.5),
-      legend.position = "none"
-    ) 
-  for (i in 1:nrow(specific_comparisons)) {
-    if (specific_comparisons$p.adj[i] < 0.05) {  # Check if p-value is significant
-      p <- p + geom_signif(
-        comparisons = list(c(specific_comparisons$group1[i], specific_comparisons$group2[i])),
-        annotations = paste0("p = ", round(specific_comparisons$p.adj[i], 3)),
-        map_signif_level = FALSE,
-        y_position = fixed_y_position
-      )
-    }
-  }
   
-  return(p)
+
   
 }
 
 # Loop through each variable
 for (var in variables) {
   # Define the path to save results for the current variable
-  folder_path <- paste0("C:/Users/Student/Documents/kinova_share/data_analysis/OUTPUTS/AllPlots_P4")
+  folder_path <- paste0("C:/Users/Student/Documents/kinova_share/data_analysis/OUTPUTS/T_Tests/")
   if (!file.exists(folder_path)) {
     dir.create(folder_path)
   }
   
   name <- single_boxplot(var) #+ guides(fill="none")
-  plot_filename <- paste0("PLOT_", var, ".png")
-  ggsave(filename = file.path(folder_path, plot_filename), units = 'in', width = 5, height = 5)
-  
-}
 
+}

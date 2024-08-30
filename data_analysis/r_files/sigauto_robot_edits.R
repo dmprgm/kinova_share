@@ -16,7 +16,7 @@ library(readr)
 library(ggsignif)
 
 # Load the CSV file
-clean_data <- read_csv("C:/Users/Student/Documents/kinova_share/data_analysis/robot_data.csv") |>
+clean_data <- read_csv("C:/Users/Student/Documents/kinova_share/data_analysis/pull_from/ConfidenceFilter/robot_data.csv") |>
   # attribute becomes another label and the values are long rather than wide
   pivot_longer(!c(id,condition), names_to = "attribute", values_to = "value")
 
@@ -24,10 +24,10 @@ clean_data <- read_csv("C:/Users/Student/Documents/kinova_share/data_analysis/ro
 head(clean_data)
 
 # List of variables to process
-variables <- c("Yaw", "Pitch", "Roll", "TwistX", "TwistY", "TwistZ", "AvgVelocity", "MaxVelocity",
+variables <- c("Yaw", "Pitch", "Roll", "AvgVelocity", "MaxVelocity",
                "AvgAccel", "MaxAccel", "AvgArea", "COGZ", "PathLengthDifference", "RangeX", 
                "RangeY", "RangeZ", "TimeElapsed", "Joint7_Distance", "Joint6_Distance", 
-               "Joint5_Distance", "Joint4_Distance", "Joint3_Distance", "Joint2_Distance", 
+               "Joint4_Distance", "Joint3_Distance", "Joint2_Distance", 
                "Joint1_Distance")
 
 # Function to create a box plot for a specific metric and save ANOVAs and t-tests
@@ -57,7 +57,7 @@ single_boxplot <- function(var){
   
   # Export the ANOVA table to a CSV file
   anova_filename <- paste0("One_way_ANOVA_results_", var, ".csv")
-  write_csv(anova_table, anova_filename)
+  write_csv(anova_table, file.path(folder_path, anova_filename))
   
   print(anova_table)
   
@@ -70,7 +70,7 @@ single_boxplot <- function(var){
   
   # Export the ANOVA table to a CSV file
   ranova_filename <- paste0("Repeated_Measures_ANOVA_results_", var, ".csv")
-  write_csv(ranova_table, ranova_filename)
+  write_csv(ranova_table, file.path(folder_path, ranova_filename))
   
   print(ranova_table)
   
@@ -102,8 +102,9 @@ single_boxplot <- function(var){
   
   # Export the t-test results to a CSV file
   ttest_filename <- paste0("t_test_results_", var, ".csv")
-  write_csv(pwc, ttest_filename)
+  write_csv(pwc, file.path(folder_path, ttest_filename))
   print(pwc)
+  
   
   # Plot formatting
   p <- target |> na.omit() |>
@@ -126,14 +127,16 @@ single_boxplot <- function(var){
       plot.subtitle = element_text(size = 12, hjust = 0.5),
       legend.position = "none"
     ) 
-  # Add significance annotations for the specific comparisons
+  # Add significance annotations for the specific comparisons only if significant
   for (i in 1:nrow(specific_comparisons)) {
-    p <- p + geom_signif(
-      comparisons = list(c(specific_comparisons$group1[i], specific_comparisons$group2[i])),
-      annotations = paste0("p = ", round(specific_comparisons$p.adj[i], 3)),  # Show the exact p-value
-      map_signif_level = FALSE,  # Disable default significance symbols
-      y_position = fixed_y_position  # Fixed y-position for all p-values
-    )
+    if (specific_comparisons$p.adj[i] < 0.05) {  # Check if p-value is significant
+      p <- p + geom_signif(
+        comparisons = list(c(specific_comparisons$group1[i], specific_comparisons$group2[i])),
+        annotations = paste0("p = ", round(specific_comparisons$p.adj[i], 3)),
+        map_signif_level = FALSE,
+        y_position = fixed_y_position
+      )
+    }
   }
   
   return(p)
@@ -143,7 +146,7 @@ single_boxplot <- function(var){
 # Loop through each variable
 for (var in variables) {
   # Define the path to save results for the current variable
-  folder_path <- paste0("C:/Users/Student/Documents/TestResultsv003/", var)
+  folder_path <- paste0("C:/Users/Student/Documents/kinova_share/data_analysis/OUTPUTS/Sigauto_v001/", var)
   if (!file.exists(folder_path)) {
     dir.create(folder_path)
   }
