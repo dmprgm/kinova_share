@@ -65,10 +65,14 @@ for(i in 1:repetitions){
   lasso.train = cv.glmnet(x.train, y.train,family='multinomial')
   
   # Step (iii) generating predictions
-  predict.1 = predict(lasso.train, x.test, s = 'lambda.min')
-  predict.2 = predict(lasso.train, x.test, s = 'lambda.1se')
+  predict.1 = predict(lasso.train, x.test, s = 'lambda.min', type = "class")
+  predict.2 = predict(lasso.train, x.test, s = 'lambda.1se', type = "class")
   y.test <- as.factor(y.test)
   y.test <- as.numeric(y.test)
+  predict.1 <- as.factor(predict.1)
+  predict.1 <- as.numeric(predict.1)
+  predict.2 <- as.factor(predict.2)
+  predict.2 <- as.numeric(predict.2)
   
   # Step (iv) evaluating predictive performance
   cor.1[i] = cor(y.test, predict.1)
