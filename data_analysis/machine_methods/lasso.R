@@ -31,15 +31,20 @@ lasso_ouput <- function(list){
   #lasso.cv$lambda.1se 
   co<-coef(lasso.cv,s = "lambda.1se")
   inds<-which(co!=0)
+  print(inds)
   variables<-row.names(co)[inds]
   variables<-variables[!(variables %in% '(Intercept)')];
-  return(variables);
+  return(co);
 }
 
 print(lasso_ouput(c('A','B')))
 print(lasso_ouput(c('C','D')))
 print(lasso_ouput(c('E','F')))
 print(lasso_ouput(c('G','H')))
+
+
+
+
 
 clean_data <- read_csv("C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/pull_from/ConfidenceFilter/robot_data.csv") |>
   filter(condition %in% c('A','B'))
@@ -48,12 +53,6 @@ y = as.factor(clean_data$condition)
 x = model.matrix(condition~., clean_data[,-1])[,-1] # Here we exclude the first column 
                                           # because it corresponds to the 
                                           # intercept.
-head(x)
-set.seed(1)
-lasso.cv = cv.glmnet(x, y, family='binomial')
-lasso.cv$lambda.min
-lasso.cv$lambda.1se 
-round(cbind(coef(lasso.cv, s ='lambda.min'), coef(lasso.cv,s='lambda.1se')),3)
 
 # par(mfrow=c(1,2))
 # plot(lasso.cv)
@@ -67,16 +66,6 @@ round(cbind(coef(lasso.cv, s ='lambda.min'), coef(lasso.cv,s='lambda.1se')),3)
 # repetitions = 50
 # cor.1 = c()
 # cor.2 = c()
-
-set.seed(1)   
-new_data <- clean_data[,-1]
-
-co<-coef(lasso.cv,s = "lambda.1se")
-co$A
-inds<-which(co!=0)
-variables<-row.names(co)[inds]
-variables<-variables[!(variables %in% '(Intercept)')];
-return(variables);
 
 # for(i in 1:repetitions){
 #   
