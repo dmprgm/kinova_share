@@ -12,15 +12,15 @@ library(extrafont)
 library(tidyr)
 library(stringr)
 font_import()
-loadfonts(device = "win")
-fonts()
+#loadfonts(device = "win")
+#fonts()
 library(readr)
 library(ggsignif)
 set.seed(1)
 
 lasso_ouput <- function(list){
   #Select Data of Interest (To Compare)
-  clean_data <- read_csv("C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/pull_from/ConfidenceFilter/robot_data.csv") |>
+  clean_data <- read_csv("C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/robot_data.csv") |>
     filter(condition %in% list)
   #Setup Data
   y = as.factor(clean_data$condition) 

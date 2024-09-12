@@ -5,8 +5,8 @@ kinova = loadrobot("kinovaGen3");
 kinova.DataFormat = 'col';
 showdetails(kinova)
 %finalData = table('VariableNames',[''])
-groupData = array2table(zeros(0,26));
-groupData.Properties.VariableNames = {'id','condition', 'Yaw','Pitch', 'Roll','TwistX','TwistY', 'TwistZ','AvgVelcoity', 'MaxVelocity', 'AvgAccel', 'MaxAccel', 'AvgArea', 'COGZ', 'PathLengthDifference', 'RangeX', 'RangeY', 'RangeZ','TimeElapsed', 'Joint7_Distance','Joint6_Distance','Joint5_Distance','Joint4_Distance','Joint3_Distance','Joint2_Distance','Joint1_Distance'};
+groupData = array2table(zeros(0,27));
+groupData.Properties.VariableNames = {'id','condition', 'Yaw','Pitch', 'Roll','TwistX','TwistY', 'TwistZ','AvgVelcoity', 'MaxVelocity', 'AvgAccel', 'MaxAccel', 'AvgArea', 'COGZ', 'PathLengthDifference', 'RangeX', 'RangeY', 'RangeZ','TimeElapsed', 'Joint7_Distance','Joint6_Distance','Joint5_Distance','Joint4_Distance','Joint3_Distance','Joint2_Distance','Joint1_Distance', 'NrPks'};
 all_data = [];
 for i=1:length(trials)
     trial = trials(i).name;
@@ -71,7 +71,8 @@ for i=1:length(trials)
                 %Base Pos
                 homo_ha = getTransform(kinova, pos_joints(2:8,1), 'Shoulder_Link');
                 position_base = tform2trvec(homo_ha);
-                consolidate = [ee_pos;  position_fa; position_ha; position_base];
+
+                consolidate = [ee_pos;  position_fa; position_ha; position_base; ee_pos(1) ee_pos(2) 0];
                 area = area3D(consolidate(:,1),consolidate(:,2),consolidate(:,3));
                 store_area = [store_area; area];
             end
@@ -119,7 +120,8 @@ for i=1:length(trials)
             pdata.accelerationY = accelerationY;
             pdata.accelerationZ = accelerationZ;
             pdata.accelNorm = normal(accelerationX,accelerationY,accelerationZ);
-
+            [pks,locs] = findpeaks(pdata.accelNorm);
+            NrPks = numel(pks);
             %Set Area
             pdata.area = store_area;
             rangeX = abs(max(pdata.Xposition) - min(pdata.Xposition));
@@ -143,7 +145,7 @@ for i=1:length(trials)
             joint_2 = store_distance(dis_len,6);
             joint_1 = store_distance(dis_len,7);
 
-            cell = {id, cond, mean(pdata.yaw), mean(pdata.pitch), mean(pdata.roll), mean(pdata.twistX), mean(pdata.twistY), mean(pdata.twistZ), mean(pdata.speedNorm), max(pdata.speedNorm),mean(pdata.accelNorm),max(pdata.accelNorm),mean(pdata.area),mean(pdata.cogZ), difference, rangeX, rangeY, rangeZ, time(length(time),1), joint_7,joint_6,joint_5,joint_4,joint_3,joint_2,joint_1};
+            cell = {id, cond, mean(pdata.yaw), mean(pdata.pitch), mean(pdata.roll), mean(pdata.twistX), mean(pdata.twistY), mean(pdata.twistZ), mean(pdata.speedNorm), max(pdata.speedNorm),mean(pdata.accelNorm),max(pdata.accelNorm),mean(pdata.area),mean(pdata.cogZ), difference, rangeX, rangeY, rangeZ, time(length(time),1), joint_7,joint_6,joint_5,joint_4,joint_3,joint_2,joint_1,NrPks};
             groupData = [groupData;cell];
 
         end
