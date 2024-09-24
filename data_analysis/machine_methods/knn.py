@@ -80,7 +80,7 @@ class RunRandomForest:
         return feature_importance_df
 
 fig, axes = plt.subplots(nrows=2, ncols=2)
-rf = RunRandomForest('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\robot_data.csv')
+rf = RunRandomForest('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\reduced.csv')
 
 rf.getFactors(['A','B']).plot(ax= axes[0,0], kind='bar',x='Feature',y='Importance',title='Weight')
 rf.reset()

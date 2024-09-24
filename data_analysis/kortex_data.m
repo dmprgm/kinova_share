@@ -147,6 +147,13 @@ for i=1:length(trials)
 
             cell = {id, cond, mean(pdata.yaw), mean(pdata.pitch), mean(pdata.roll), mean(pdata.twistX), mean(pdata.twistY), mean(pdata.twistZ), mean(pdata.speedNorm), max(pdata.speedNorm),mean(pdata.accelNorm),max(pdata.accelNorm),mean(pdata.area),mean(pdata.cogZ), difference, rangeX, rangeY, rangeZ, time(length(time),1), joint_7,joint_6,joint_5,joint_4,joint_3,joint_2,joint_1,NrPks};
             groupData = [groupData;cell];
+            final_table = table(time,pdata.Xposition,pdata.Yposition,pdata.Zposition);
+            final_table.Properties.VariableNames = {'time','x', 'y','z'};
+            part_cond
+            name = "OUTPUTS/Trajectories/trajectory_" + part_cond+  ".csv"
+            
+            writetable(final_table,name);
+
 
         end
 

@@ -9,14 +9,14 @@ library(ggplot2)
 library(extrafont)
 library(tidyr)
 library(stringr)
-font_import()
-loadfonts(device = "win")
-fonts()
+#font_import()
+#loadfonts(device = "win")
+#fonts()
 library(readr)
 library(ggsignif)
 
 # Load the CSV file
-clean_data <- read_csv("C:/Users/Student/Documents/kinova_share/data_analysis/pull_from/rawdata/robot_data.csv") |>
+clean_data <- read_csv("C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/robot_data.csv") |>
   # attribute becomes another label and the values are long rather than wide
   pivot_longer(!c(id,condition), names_to = "attribute", values_to = "value")
 
@@ -24,11 +24,7 @@ clean_data <- read_csv("C:/Users/Student/Documents/kinova_share/data_analysis/pu
 head(clean_data)
 
 # List of variables to process
-variables <- c("Yaw", "Pitch", "Roll", "AvgVelocity", "MaxVelocity",
-               "AvgAccel", "MaxAccel", "AvgArea", "COGZ", "PathLengthDifference", "RangeX", 
-               "RangeY", "RangeZ", "TimeElapsed", "Joint7_Distance", "Joint6_Distance", 
-               "Joint4_Distance", "Joint3_Distance", "Joint2_Distance", 
-               "Joint1_Distance")
+variables <- c("NrPks")
 
 # Function to create a box plot for a specific metric and save ANOVAs and t-tests
 single_boxplot <- function(var){
@@ -91,7 +87,7 @@ single_boxplot <- function(var){
 # Loop through each variable
 for (var in variables) {
   # Define the path to save results for the current variable
-  folder_path <- paste0("C:/Users/Student/Documents/kinova_share/data_analysis/OUTPUTS/rANOVAs/")
+  folder_path <- paste0("C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/OUTPUTS/rANOVAs")
   if (!file.exists(folder_path)) {
     dir.create(folder_path)
   }

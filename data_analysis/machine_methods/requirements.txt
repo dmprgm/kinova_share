@@ -1,0 +1,9 @@
+scikit-learn
+pandas
+scipy
+statsmodels
+matplotlib
+IPython
+graphviz
+numpy
+jinja2
