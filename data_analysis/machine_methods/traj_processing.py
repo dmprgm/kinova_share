@@ -4,6 +4,7 @@ import pandas as pd
 from sklearn.cluster import AgglomerativeClustering
 from scipy.spatial import procrustes
 from scipy.interpolate import interp1d
+from scipy.stats import kurtosis, skew
 import matplotlib.pyplot as plt
 
 from collections import Counter
@@ -28,7 +29,8 @@ class TrajectoryProcessing:
     
     def collectTrajectories(self):
         group = 0
-        path = "C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/OUTPUTS/Trajectories/*.csv"
+        path = '/home/sharer/Documents/kinova_share/data_analysis/OUTPUTS/Trajectories/*.csv'
+        #path = "C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/OUTPUTS/Trajectories/*.csv"
         for fname in glob.glob(path):
             name = fname[80:]
             name = name.split('.')[0]
@@ -38,6 +40,73 @@ class TrajectoryProcessing:
             self.nodes.append(Node(list[1][1], list[2][0], data))
             group+=1
     
+
+    def velocityCalc(self):
+        distances = ['x','y','z']
+        for i in range(len(self.nodes)):
+            positions = self.nodes[i].data[distances].to_numpy()
+            time = self.nodes[i].data['time'].to_numpy()
+            velocity = np.gradient(positions,time,axis=0)
+            acceleration = np.gradient(velocity, time, axis=0)
+            self.nodes[i].data[['x_vel','y_vel','z_vel']] = velocity
+            self.nodes[i].data[['x_accel','y_accel','z_accel']] = acceleration
+
+    def kurtosisCalc(self):
+        self.k_values = []
+        for i in range(len(self.nodes)):
+            df = self.nodes[i].data
+            k_values = kurtosis(df.loc[:, df.columns != 'time'])
+            self.k_values.append(np.array(k_values))
+            #self.k_values[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = k_values
+        self.k_values = np.array(self.k_values)
+        print(np.mean(self.k_values, axis=0))
+        
+
+    def skewnessCalc(self):
+        self.skewness = []
+        for i in range(len(self.nodes)):
+            df = self.nodes[i].data
+            skewness = skew(df.loc[:, df.columns != 'time'])
+            self.skewness.append(skewness)
+            #self.k_values[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = k_values
+        self.skewness = np.array(self.skewness)
+        print(np.mean(self.skewness, axis=0))
+
+
+    def plotSkewKurt(self):
+        #for i in range(len(self.nodes)):
+        print(self.k_values)
+        y = self.k_values[:,0]
+        x = self.skewness[:,0]
+        #plt.scatter(x,y)
+
+        y = self.k_values[:,1]
+        x = self.skewness[:,1]
+        #plt.scatter(x,y,c='red')
+
+        y = self.k_values[:,2]
+        x = self.skewness[:,2]
+        plt.scatter(x,y,c='green')
+
+
+        y = self.k_values[:,3]
+        x = self.skewness[:,3]
+        plt.scatter(x,y,c='purple')
+
+
+        y = self.k_values[:,4]
+        x = self.skewness[:,4]
+        plt.scatter(x,y,c='orange')
+
+        y = self.k_values[:,5]
+        x = self.skewness[:,5]
+        plt.scatter(x,y,c='yellow')
+
+        plt.show()
+
+
+        
+
     def metric(self, x, y):
         array_x = x.data[['x','y','z']].to_numpy()
         array_y = y.data[['x','y','z']].to_numpy()
@@ -111,9 +180,13 @@ class TrajectoryProcessing:
 
 test = TrajectoryProcessing()
 test.collectTrajectories()
+test.velocityCalc()
+test.kurtosisCalc()
+test.skewnessCalc()
+test.plotSkewKurt()
 #test.plotConditions(['G','H'])
-test.groupBasedOnCluster()
-test.plotClusters()
+#test.groupBasedOnCluster()
+#test.plotClusters()
 #print(test.nodes)
 # print(test.metric(test.nodes[0],test.nodes[1]))
 # 
