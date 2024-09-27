@@ -250,14 +250,14 @@ def testConditions(file, conditions):
                     "Mean Error": [error]
                 })], ignore_index=True)
     
-
+    reduced_file_name = file[-11:].split('.')[0]
     print(df_scores)
     cm_display = ConfusionMatrixDisplay(cm_total, display_labels=conditions).plot()
     title = f'Correct Guess - Condition {conditions[0],conditions[1]}'
     cm_display.ax_.set(xlabel='Predicted', ylabel='True',title=title)
-    plt.savefig(f'.\OUTPUTS\{title}.png')
+    plt.savefig(f'.\OUTPUTS\plots\plot_{title}.png')
     #plt.show()
-    save_accuracy(f'{validation[0].lower()}_formatted_1000_{conditions[0]}_{conditions[1]}.xlsx', df_scores, clf_keys)
+    save_accuracy(f'OUTPUTS\csvs\{validation[0].lower()}_{conditions[0]}_{conditions[1]}_{reduced_file_name}.xlsx', df_scores, clf_keys)
 
 if __name__ == "__main__":
     file = 'C:\\Users\\nnamd\Documents\\GitHub\\kinova_share\\data_analysis\\pull_from\\ConfidenceFilter\\reduced.csv'

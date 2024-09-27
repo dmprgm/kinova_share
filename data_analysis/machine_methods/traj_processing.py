@@ -29,8 +29,8 @@ class TrajectoryProcessing:
     
     def collectTrajectories(self):
         group = 0
-        path = '/home/sharer/Documents/kinova_share/data_analysis/OUTPUTS/Trajectories/*.csv'
-        #path = "C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/OUTPUTS/Trajectories/*.csv"
+        #path = '/home/sharer/Documents/kinova_share/data_analysis/OUTPUTS/Trajectories/*.csv'
+        path = "C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/OUTPUTS/Trajectories/*.csv"
         for fname in glob.glob(path):
             name = fname[80:]
             name = name.split('.')[0]
@@ -59,6 +59,9 @@ class TrajectoryProcessing:
             self.k_values.append(np.array(k_values))
             #self.k_values[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = k_values
         self.k_values = np.array(self.k_values)
+        data = pd.DataFrame()
+        data[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = self.k_values
+        data.to_csv('OUTPUTS/csvs/kurtosis.csv')
         print(np.mean(self.k_values, axis=0))
         
 
@@ -70,6 +73,9 @@ class TrajectoryProcessing:
             self.skewness.append(skewness)
             #self.k_values[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = k_values
         self.skewness = np.array(self.skewness)
+        data = pd.DataFrame()
+        data[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = self.skewness
+        data.to_csv('OUTPUTS/csvs/skewness.csv')
         print(np.mean(self.skewness, axis=0))
 
 
@@ -142,6 +148,9 @@ class TrajectoryProcessing:
                     ax.plot3D(x_d,y_d,z_d,'green')
                 else:
                     ax.plot3D(x_d,y_d,z_d,'blue')
+        title = f'all_trajectories_{conditions[0]}_{conditions[1]}'
+        plt.title(title)
+        plt.savefig(f'OUTPUTS/plots/{title}.png')
         plt.show()
 
     def distanceMatrix(self):
@@ -164,16 +173,19 @@ class TrajectoryProcessing:
             self.nodes[i].cluster = cluster.labels_[i]
         
 
-    def plotClusters(self, selection=[0,1]):
+    def plotClusters(self, selection=['A','B']):
         fig = plt.figure()
         ax = plt.axes(projection ='3d')
         colors = ['green', 'blue', 'red', 'yellow', 'purple', 'black', 'orange','pink']
         for x in self.nodes:
-            if x.cluster in selection:
+            if x.group in selection:
                 x_d = x.data['x'].to_numpy()
                 y_d = x.data['y'].to_numpy()
                 z_d = x.data['z'].to_numpy()
                 ax.plot3D(x_d,y_d,z_d,colors[x.cluster])
+        title = f'trajectories_by_cluster{selection[0]}_{selection[1]}'
+        plt.title(title)
+        plt.savefig(f'OUTPUTS/plots/{title}.png')
         plt.show()
 
 
@@ -181,12 +193,20 @@ class TrajectoryProcessing:
 test = TrajectoryProcessing()
 test.collectTrajectories()
 test.velocityCalc()
-test.kurtosisCalc()
-test.skewnessCalc()
-test.plotSkewKurt()
+#test.kurtosisCalc()
+#test.skewnessCalc()
+#test.plotSkewKurt()
+
+
+#test.plotConditions(['A','B'])
+#test.plotConditions(['C','D'])
+#test.plotConditions(['E','F'])
 #test.plotConditions(['G','H'])
-#test.groupBasedOnCluster()
-#test.plotClusters()
+test.groupBasedOnCluster()
+test.plotClusters(selection=['C','D'])
+test.plotClusters(selection=['E','F'])
+test.plotClusters(selection=['G','H'])
+test.plotClusters(selection=['A','B'])
 #print(test.nodes)
 # print(test.metric(test.nodes[0],test.nodes[1]))
 # 
