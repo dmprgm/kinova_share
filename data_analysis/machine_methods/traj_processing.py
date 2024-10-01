@@ -59,9 +59,9 @@ class TrajectoryProcessing:
             self.k_values.append(np.array(k_values))
             #self.k_values[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = k_values
         self.k_values = np.array(self.k_values)
-        data = pd.DataFrame()
-        data[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = self.k_values
-        data.to_csv('OUTPUTS/csvs/kurtosis.csv')
+        #data = pd.DataFrame()
+        #data[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = self.k_values
+        #data.to_csv('OUTPUTS/csvs/kurtosis.csv')
         print(np.mean(self.k_values, axis=0))
         
 
@@ -73,9 +73,9 @@ class TrajectoryProcessing:
             self.skewness.append(skewness)
             #self.k_values[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = k_values
         self.skewness = np.array(self.skewness)
-        data = pd.DataFrame()
-        data[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = self.skewness
-        data.to_csv('OUTPUTS/csvs/skewness.csv')
+        #data = pd.DataFrame()
+        #data[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = self.skewness
+        #data.to_csv('OUTPUTS/csvs/skewness.csv')
         print(np.mean(self.skewness, axis=0))
 
 
@@ -193,8 +193,8 @@ class TrajectoryProcessing:
 test = TrajectoryProcessing()
 test.collectTrajectories()
 test.velocityCalc()
-#test.kurtosisCalc()
-#test.skewnessCalc()
+test.kurtosisCalc()
+test.skewnessCalc()
 #test.plotSkewKurt()
 
 
@@ -202,11 +202,11 @@ test.velocityCalc()
 #test.plotConditions(['C','D'])
 #test.plotConditions(['E','F'])
 #test.plotConditions(['G','H'])
-test.groupBasedOnCluster()
-test.plotClusters(selection=['C','D'])
-test.plotClusters(selection=['E','F'])
-test.plotClusters(selection=['G','H'])
-test.plotClusters(selection=['A','B'])
+# test.groupBasedOnCluster()
+# test.plotClusters(selection=['C','D'])
+# test.plotClusters(selection=['E','F'])
+# test.plotClusters(selection=['G','H'])
+# test.plotClusters(selection=['A','B'])
 #print(test.nodes)
 # print(test.metric(test.nodes[0],test.nodes[1]))
 # 

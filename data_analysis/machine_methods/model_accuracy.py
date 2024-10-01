@@ -167,18 +167,21 @@ def testConditions(file, conditions):
     """ Generates and tests an ensemble classifier for laughter recognition """
     # contains all the data we need for classification
     master_df = pd.read_csv(file)
+    #skew = pd.read_csv('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\machine_methods\\OUTPUTS\\csvs\\skew.csv')
+    kurtosis = pd.read_csv('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\machine_methods\\OUTPUTS\\csvs\\kurtosis.csv')
+    master_df[['k_x','k_y','k_z']] = kurtosis[['x_accel','y_accel','z_accel']]
     master_df = master_df[master_df['condition'].str.contains('|'.join(conditions))]
     
     master_df['id'] =  master_df['id'].str.slice(1).astype(int)
 
     master_df['condition'] = master_df['condition'].map(makeDict(conditions))
 
-    
+    print(master_df)
  
     # # training features
     # Features List (formatted_features is all features)
     formatted_features = ['AvgVelocity','PathLengthDifference','RangeZ',
-                          'TimeElapsed'
+                          'TimeElapsed', 'k_x','k_y','k_z'
                           ]
     intensity_features = ['Yaw','Pitch','Roll','AvgVelocity','MaxVelocity','AvgAccel','MaxAccel','AvgArea','COGZ','PathLengthDifference','RangeX','RangeY','RangeZ',
                           'TimeElapsed'
@@ -191,7 +194,7 @@ def testConditions(file, conditions):
     # MAKE IT 2 CLASS -1/0 vs 1
     # master_df[validation] = master_df[validation].replace(-1, 0)
 
-    clf_keys = ['logreg', 'svc', 'knn']
+    clf_keys = ['logreg', 'svc', 'knn','mlp','nb']
     #clf_keys = ['lar','lr','logreg']
 
 
@@ -239,7 +242,7 @@ def testConditions(file, conditions):
                 error = mean_absolute_error(y_test,results)
                 accuracy = accuracy_score(y_test,results)
                 
-                cm = confusion_matrix(y_test, results,labels=range(1,len(conditions)+1),normalize='true')
+                cm = confusion_matrix(y_test, results,labels=range(1,len(conditions)+1))
 
                 cm_total = np.array(cm) + np.array(cm_total)
                 rows = {"Test Participant": i,"Classifier":clf_key,"Accuracy": accuracy,"Mean Error": error}
@@ -255,9 +258,9 @@ def testConditions(file, conditions):
     cm_display = ConfusionMatrixDisplay(cm_total, display_labels=conditions).plot()
     title = f'Correct Guess - Condition {conditions[0],conditions[1]}'
     cm_display.ax_.set(xlabel='Predicted', ylabel='True',title=title)
-    plt.savefig(f'.\OUTPUTS\plots\plot_{title}.png')
+    plt.savefig(f'.\OUTPUTS\plots\plot_{title}_{reduced_file_name}_kurt.png')
     #plt.show()
-    save_accuracy(f'OUTPUTS\csvs\{validation[0].lower()}_{conditions[0]}_{conditions[1]}_{reduced_file_name}.xlsx', df_scores, clf_keys)
+    save_accuracy(f'OUTPUTS\csvs\{validation[0].lower()}_{conditions[0]}_{conditions[1]}_{reduced_file_name}_kurt.xlsx', df_scores, clf_keys)
 
 if __name__ == "__main__":
     file = 'C:\\Users\\nnamd\Documents\\GitHub\\kinova_share\\data_analysis\\pull_from\\ConfidenceFilter\\reduced.csv'

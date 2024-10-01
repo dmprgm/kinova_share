@@ -7,3 +7,4 @@ IPython
 graphviz
 numpy
 jinja2
+pywin32
