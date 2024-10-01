@@ -1,7 +1,7 @@
 %Get csvs
 trials = dir("study_csv");
 
-kinova = loadrobot("kinovaGen3");
+kinova = loadrobot("kinovaGen3", Gravity=[0 0 -9.81]);
 kinova.DataFormat = 'col';
 showdetails(kinova)
 %finalData = table('VariableNames',[''])
@@ -26,7 +26,7 @@ for i=1:length(trials)
             %Fix columns for pos/vel/efforts
             pos_joints = splitColumn(T.Position);
             vel_joints = splitColumn(T.Velocity);
-            %eff_joints = splitColumn(T.Effort);
+            eff_joints = splitColumn(T.Effort);
 
             %% SETUP STORAGE
             store_speed = [];
@@ -35,7 +35,8 @@ for i=1:length(trials)
             store_time = [];
             store_area = [];
             store_config = [];
-            
+            store_torque = [];
+            store_force = [];
 
             len = length(pos_joints);
             for i= 1:11:len
@@ -75,6 +76,12 @@ for i=1:length(trials)
                 consolidate = [ee_pos;  position_fa; position_ha; position_base; ee_pos(1) ee_pos(2) 0];
                 area = area3D(consolidate(:,1),consolidate(:,2),consolidate(:,3));
                 store_area = [store_area; area];
+                eff_joints(2:8,i)
+                gtau = gravityTorque(kinova,config)
+                corrected_efforts = (eff_joints(2:8,i) - gtau)'
+                store_torque = [store_torque; corrected_efforts];
+                force = jacobian*corrected_efforts'
+                store_force = [store_force; force];
             end
             
             store_distance = [0 0 0 0 0 0 0];

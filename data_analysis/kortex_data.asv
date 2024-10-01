@@ -26,7 +26,7 @@ for i=1:length(trials)
             %Fix columns for pos/vel/efforts
             pos_joints = splitColumn(T.Position);
             vel_joints = splitColumn(T.Velocity);
-            %eff_joints = splitColumn(T.Effort);
+            eff_joints = splitColumn(T.Effort);
 
             %% SETUP STORAGE
             store_speed = [];
@@ -35,7 +35,7 @@ for i=1:length(trials)
             store_time = [];
             store_area = [];
             store_config = [];
-            
+            store_torque = [];
 
             len = length(pos_joints);
             for i= 1:11:len
@@ -75,6 +75,11 @@ for i=1:length(trials)
                 consolidate = [ee_pos;  position_fa; position_ha; position_base; ee_pos(1) ee_pos(2) 0];
                 area = area3D(consolidate(:,1),consolidate(:,2),consolidate(:,3));
                 store_area = [store_area; area];
+
+                gtau = gravityTorque(robot,config);
+                eff_joints(2:8,i);
+
+
             end
             
             store_distance = [0 0 0 0 0 0 0];
@@ -148,7 +153,9 @@ for i=1:length(trials)
             cell = {id, cond, mean(pdata.yaw), mean(pdata.pitch), mean(pdata.roll), mean(pdata.twistX), mean(pdata.twistY), mean(pdata.twistZ), mean(pdata.speedNorm), max(pdata.speedNorm),mean(pdata.accelNorm),max(pdata.accelNorm),mean(pdata.area),mean(pdata.cogZ), difference, rangeX, rangeY, rangeZ, time(length(time),1), joint_7,joint_6,joint_5,joint_4,joint_3,joint_2,joint_1,NrPks};
             groupData = [groupData;cell];
             final_table = table(time,pdata.Xposition,pdata.Yposition,pdata.Zposition);
-            name = sprintf('OUTPUTS/Trajectories/trajectory_' + '.csv', part_cond)
+            final_table.Properties.VariableNames = {'time','x', 'y','z'};
+            part_cond
+            name = "OUTPUTS/Trajectories/trajectory_" + part_cond+  ".csv"
             
             writetable(final_table,name);
 
