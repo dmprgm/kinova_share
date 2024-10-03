@@ -26,13 +26,14 @@ class TrajectoryProcessing:
 
     def __init__(self) -> None:
         self.nodes = []
+        self.temp_df = pd.read_csv('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\robot_data.csv')
     
     def collectTrajectories(self):
         group = 0
         #path = '/home/sharer/Documents/kinova_share/data_analysis/OUTPUTS/Trajectories/*.csv'
-        path = "C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/OUTPUTS/Trajectories/*.csv"
+        path = "C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/OUTPUTS/CompleteTrajectories/*.csv"
         for fname in glob.glob(path):
-            name = fname[80:]
+            name = fname[88:]
             name = name.split('.')[0]
             list = name.split('_')
             print(list[1], list[2][0])
@@ -44,12 +45,15 @@ class TrajectoryProcessing:
     def velocityCalc(self):
         distances = ['x','y','z']
         for i in range(len(self.nodes)):
+            print(self.nodes[i].data)
             positions = self.nodes[i].data[distances].to_numpy()
             time = self.nodes[i].data['time'].to_numpy()
             velocity = np.gradient(positions,time,axis=0)
             acceleration = np.gradient(velocity, time, axis=0)
             self.nodes[i].data[['x_vel','y_vel','z_vel']] = velocity
+            self.nodes[i].data['norm_vel'] = np.linalg.norm(velocity, axis=1)
             self.nodes[i].data[['x_accel','y_accel','z_accel']] = acceleration
+            self.nodes[i].data['norm_accel'] = np.linalg.norm(acceleration, axis=1)
 
     def kurtosisCalc(self):
         self.k_values = []
@@ -57,61 +61,33 @@ class TrajectoryProcessing:
             df = self.nodes[i].data
             k_values = kurtosis(df.loc[:, df.columns != 'time'])
             self.k_values.append(np.array(k_values))
-            #self.k_values[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = k_values
+            #self.k_values[columns] = k_values
         self.k_values = np.array(self.k_values)
-        #data = pd.DataFrame()
-        #data[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = self.k_values
-        #data.to_csv('OUTPUTS/csvs/kurtosis.csv')
-        print(np.mean(self.k_values, axis=0))
+        data = pd.DataFrame()
+        columns = np.array(df.columns.values[1:])
+        data[columns] = self.k_values
+        data.to_csv('OUTPUTS/csvs/kurtosis.csv')
+        new_columns = ['kurtosis_' + s for s in columns]
+        self.temp_df[new_columns] = data[columns]
+        #print(np.mean(self.k_values, axis=0))
         
 
     def skewnessCalc(self):
         self.skewness = []
         for i in range(len(self.nodes)):
             df = self.nodes[i].data
+            columns = list(df.columns.values[1:])
             skewness = skew(df.loc[:, df.columns != 'time'])
             self.skewness.append(skewness)
-            #self.k_values[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = k_values
+            #self.k_values[columns] = skewness
         self.skewness = np.array(self.skewness)
-        #data = pd.DataFrame()
-        #data[['x','y','z','x_vel','y_vel','z_vel','x_accel','y_accel','z_accel']] = self.skewness
-        #data.to_csv('OUTPUTS/csvs/skewness.csv')
-        print(np.mean(self.skewness, axis=0))
-
-
-    def plotSkewKurt(self):
-        #for i in range(len(self.nodes)):
-        print(self.k_values)
-        y = self.k_values[:,0]
-        x = self.skewness[:,0]
-        #plt.scatter(x,y)
-
-        y = self.k_values[:,1]
-        x = self.skewness[:,1]
-        #plt.scatter(x,y,c='red')
-
-        y = self.k_values[:,2]
-        x = self.skewness[:,2]
-        plt.scatter(x,y,c='green')
-
-
-        y = self.k_values[:,3]
-        x = self.skewness[:,3]
-        plt.scatter(x,y,c='purple')
-
-
-        y = self.k_values[:,4]
-        x = self.skewness[:,4]
-        plt.scatter(x,y,c='orange')
-
-        y = self.k_values[:,5]
-        x = self.skewness[:,5]
-        plt.scatter(x,y,c='yellow')
-
-        plt.show()
-
-
-        
+        data = pd.DataFrame()
+        columns = np.array(df.columns.values[1:])
+        data[columns] = self.skewness
+        data.to_csv('OUTPUTS/csvs/skewness.csv')
+        new_columns = ['skew_' + s for s in columns]
+        self.temp_df[new_columns] = data[columns]
+        #print(np.mean(self.skewness, axis=0))
 
     def metric(self, x, y):
         array_x = x.data[['x','y','z']].to_numpy()
@@ -195,6 +171,7 @@ test.collectTrajectories()
 test.velocityCalc()
 test.kurtosisCalc()
 test.skewnessCalc()
+test.temp_df.to_csv('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\pull_from\\ConfidenceFilter\\all_kurt_skew.csv')
 #test.plotSkewKurt()
 
 

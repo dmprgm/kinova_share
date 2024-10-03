@@ -28,7 +28,7 @@ from sklearn.metrics import hamming_loss
 from sklearn.feature_selection import SelectFromModel
 from sklearn.preprocessing import StandardScaler
 import pickle
-
+import glob
 import matplotlib.pyplot as plt
 
 
@@ -167,9 +167,7 @@ def testConditions(file, conditions):
     """ Generates and tests an ensemble classifier for laughter recognition """
     # contains all the data we need for classification
     master_df = pd.read_csv(file)
-    #skew = pd.read_csv('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\machine_methods\\OUTPUTS\\csvs\\skew.csv')
-    kurtosis = pd.read_csv('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\machine_methods\\OUTPUTS\\csvs\\kurtosis.csv')
-    master_df[['k_x','k_y','k_z']] = kurtosis[['x_accel','y_accel','z_accel']]
+
     master_df = master_df[master_df['condition'].str.contains('|'.join(conditions))]
     
     master_df['id'] =  master_df['id'].str.slice(1).astype(int)
@@ -180,12 +178,11 @@ def testConditions(file, conditions):
  
     # # training features
     # Features List (formatted_features is all features)
-    formatted_features = ['AvgVelocity','PathLengthDifference','RangeZ',
-                          'TimeElapsed', 'k_x','k_y','k_z'
-                          ]
-    intensity_features = ['Yaw','Pitch','Roll','AvgVelocity','MaxVelocity','AvgAccel','MaxAccel','AvgArea','COGZ','PathLengthDifference','RangeX','RangeY','RangeZ',
-                          'TimeElapsed'
-                          ]
+    columns = np.array(master_df.columns.values)
+    formatted_features = [columns]
+    #intensity_features = ['Yaw','Pitch','Roll','AvgVelocity','MaxVelocity','AvgAccel','MaxAccel','AvgArea','COGZ','PathLengthDifference','RangeX','RangeY','RangeZ',
+    #                      'TimeElapsed'
+    #                      ]
     
     
     # ground truth validation column
@@ -253,7 +250,7 @@ def testConditions(file, conditions):
                     "Mean Error": [error]
                 })], ignore_index=True)
     
-    reduced_file_name = file[-11:].split('.')[0]
+    reduced_file_name = file[file.rfind('/')+1:].split('.')[0]
     print(df_scores)
     cm_display = ConfusionMatrixDisplay(cm_total, display_labels=conditions).plot()
     title = f'Correct Guess - Condition {conditions[0],conditions[1]}'
@@ -263,12 +260,14 @@ def testConditions(file, conditions):
     save_accuracy(f'OUTPUTS\csvs\{validation[0].lower()}_{conditions[0]}_{conditions[1]}_{reduced_file_name}_kurt.xlsx', df_scores, clf_keys)
 
 if __name__ == "__main__":
-    file = 'C:\\Users\\nnamd\Documents\\GitHub\\kinova_share\\data_analysis\\pull_from\\ConfidenceFilter\\reduced.csv'
-
-    testConditions(file, ['A','B'])
-    testConditions(file, ['C','D'])
-    testConditions(file, ['E','F'])
-    testConditions(file, ['G','H'])
+    #file = 'C:\\Users\\nnamd\Documents\\GitHub\\kinova_share\\data_analysis\\pull_from\\ConfidenceFilter\\reduced.csv'
+    
+    path = "C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/pull_from/ConfidenceFilter/*.csv"
+    for file in glob.glob(path):
+        testConditions(file, ['A','B'])
+        testConditions(file, ['C','D'])
+        testConditions(file, ['E','F'])
+        testConditions(file, ['G','H'])
 
     # """ Generates and tests an ensemble classifier for laughter recognition """
     # # contains all the data we need for classification

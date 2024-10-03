@@ -5,8 +5,10 @@ kinova = loadrobot("kinovaGen3", Gravity=[0 0 -9.81]);
 kinova.DataFormat = 'col';
 showdetails(kinova)
 %finalData = table('VariableNames',[''])
-groupData = array2table(zeros(0,27));
-groupData.Properties.VariableNames = {'id','condition', 'Yaw','Pitch', 'Roll','TwistX','TwistY', 'TwistZ','AvgVelcoity', 'MaxVelocity', 'AvgAccel', 'MaxAccel', 'AvgArea', 'COGZ', 'PathLengthDifference', 'RangeX', 'RangeY', 'RangeZ','TimeElapsed', 'Joint7_Distance','Joint6_Distance','Joint5_Distance','Joint4_Distance','Joint3_Distance','Joint2_Distance','Joint1_Distance', 'NrPks'};
+groupData = array2table(zeros(0,21));
+groupData.Properties.VariableNames = {'id','condition',...
+    'AvgVelcoity', 'MaxVelocity', 'AvgAccel', 'MaxAccel', 'AvgArea', 'COGZ', 'PathLengthDifference',...
+    'RangeX', 'RangeY', 'RangeZ','TimeElapsed', 'NrPks','AvgForceX','AvgForceY','AvgForceZ','MaxForceX','MaxForceY','MaxForceZ' 'AbgX'};
 all_data = [];
 for i=1:length(trials)
     trial = trials(i).name;
@@ -76,12 +78,11 @@ for i=1:length(trials)
                 consolidate = [ee_pos;  position_fa; position_ha; position_base; ee_pos(1) ee_pos(2) 0];
                 area = area3D(consolidate(:,1),consolidate(:,2),consolidate(:,3));
                 store_area = [store_area; area];
-                eff_joints(2:8,i)
-                gtau = gravityTorque(kinova,config)
-                corrected_efforts = (eff_joints(2:8,i) - gtau)'
+                gtau = gravityTorque(kinova,config);
+                corrected_efforts = (eff_joints(2:8,i) - gtau)';
                 store_torque = [store_torque; corrected_efforts];
-                force = jacobian*corrected_efforts'
-                store_force = [store_force; force];
+                force = jacobian*corrected_efforts';
+                store_force = [store_force; force'];
             end
             
             store_distance = [0 0 0 0 0 0 0];
@@ -97,9 +98,14 @@ for i=1:length(trials)
             pdata.Xposition = store_position(:,1);
             pdata.Yposition = store_position(:,2);
             pdata.Zposition = store_position(:,3);
-            pdata.yaw = store_position(:,4);
-            pdata.pitch = store_position(:,5);
-            pdata.roll = store_position(:,6);
+            %pdata.yaw = store_position(:,4);
+            %pdata.pitch = store_position(:,5);
+            %pdata.roll = store_position(:,6);
+            
+
+            pdata.forceX = store_force(:,4);
+            pdata.forceY = store_force(:,5);
+            pdata.forceZ = store_force(:,6);
 
             %Linear Velocities
             pdata.speedX = store_speed(:,1);
@@ -136,28 +142,23 @@ for i=1:length(trials)
             rangeZ = abs(max(pdata.Zposition) - min(pdata.Zposition));
 
 
+            %Forces?
+            test_force  = normal(store_force(:,4),store_force(:,5),store_force(:,6));
+            test_torque = normal(store_force(:,1),store_force(:,2),store_force(:,3));
+
             full = arclength(store_position(:,1), store_position(:,2),store_position(:,3));
             first_last = [store_position(1,:); store_position(height(store_position),:)];
             shortest = arclength(first_last(:,1), first_last(:,2), first_last(:,3));
             difference = full - shortest;
             
             %Joint Change in Position
-            joint_difference = pos_joints(2:8,length(pos_joints)) - pos_joints(2:8,1);
-            dis_len = length(store_distance);
-            joint_7 = store_distance(dis_len,1);
-            joint_6 = store_distance(dis_len,2);
-            joint_5 = store_distance(dis_len,3);
-            joint_4 = store_distance(dis_len,4);
-            joint_3 = store_distance(dis_len,5);
-            joint_2 = store_distance(dis_len,6);
-            joint_1 = store_distance(dis_len,7);
 
-            cell = {id, cond, mean(pdata.yaw), mean(pdata.pitch), mean(pdata.roll), mean(pdata.twistX), mean(pdata.twistY), mean(pdata.twistZ), mean(pdata.speedNorm), max(pdata.speedNorm),mean(pdata.accelNorm),max(pdata.accelNorm),mean(pdata.area),mean(pdata.cogZ), difference, rangeX, rangeY, rangeZ, time(length(time),1), joint_7,joint_6,joint_5,joint_4,joint_3,joint_2,joint_1,NrPks};
+            cell = {id, cond, mean(pdata.speedNorm), max(pdata.speedNorm),mean(pdata.accelNorm),max(pdata.accelNorm),mean(pdata.area),mean(pdata.cogZ), difference, rangeX, rangeY, rangeZ, time(length(time),1),NrPks,mean(store_force(:,4)),mean(store_force(:,5)),mean(store_force(:,6)),max(abs(store_force(:,4))),max(abs(store_force(:,5))),max(abs(store_force(:,6))),mean(test_torque)};
             groupData = [groupData;cell];
-            final_table = table(time,pdata.Xposition,pdata.Yposition,pdata.Zposition);
-            final_table.Properties.VariableNames = {'time','x', 'y','z'};
-            part_cond
-            name = "OUTPUTS/Trajectories/trajectory_" + part_cond+  ".csv"
+            final_table = table(time,pdata.Xposition,pdata.Yposition,pdata.Zposition,pdata.cogX,pdata.cogY,pdata.cogZ,pdata.area,pdata.forceX,pdata.forceY,pdata.forceZ);
+            final_table.Properties.VariableNames = {'time','x', 'y','z','cogx','cogy','cogz','area','forceX','forceY','forceZ'};
+            %part_cond
+            name = "OUTPUTS/CompleteTrajectories/trajectory_" + part_cond+  ".csv";
             
             writetable(final_table,name);
 
@@ -174,60 +175,6 @@ for i=1:length(trials)
 end
 
 writetable(groupData,'robot_data.csv')
-
-
-
-
-
-%ee_pos = [store_position(1,1), store_position(1,2),store_position(1,3)];
-%FA Pos
-%homo_fa = getTransform(kinova, pos_joints(2:8,1), 'ForeArm_Link');
-%position_fa = tform2trvec(homo);
-
-%Half Arm Link 1 Pos
-
-%Base Pos
-%homo_ha = getTransform(kinova, pos_joints(2:8,1), 'HalfArm1_Link');
-%position_ha = tform2trvec(homo_ha);
-
-
-%homo_ha = getTransform(kinova, pos_joints(2:8,1), 'Shoulder_Link');
-%position_base = tform2trvec(homo_ha);
-
-%consolidate = [ee_pos; position_fa; position_ha; position_base ];
-%show(kinova, pos_joints(2:8,1),'PreservePlot',false,'FastUpdate',true);
-
-
-%hold on
-%h = fill3(consolidate(:,1),consolidate(:,2),consolidate(:,3),'r','FaceAlpha',0.2);
-
-% %Simple Animation/ Playback
-% r = rateControl(60);
-% for i = 1:11:len
-%     show(kinova, pos_joints(2:8,i),'PreservePlot',false,'FastUpdate',true);
-%
-%     ee_pos = [store_position(i,1), store_position(i,2),store_position(i,3)];
-%     %FA Pos
-%     homo_fa = getTransform(kinova, pos_joints(2:8,i), 'ForeArm_Link');
-%     position_fa = tform2trvec(homo_fa);
-%
-%     %Half Arm Link 1 Pos
-%     homo_ha = getTransform(kinova, pos_joints(2:8,i), 'HalfArm1_Link');
-%     position_ha = tform2trvec(homo_ha);
-%     %Base Pos
-%     homo_ha = getTransform(kinova, pos_joints(2:8,1), 'Shoulder_Link');
-%     position_base = tform2trvec(homo_ha);
-%     consolidate = [ ee_pos;  position_fa; position_ha; position_base];
-%     set(h, 'XData', consolidate(:,1), 'YData', consolidate(:,2), 'ZData', consolidate(:,3));
-%
-%     drawnow;
-%     waitfor(r);
-% end
-
-% hold on
-% plot3(store_position(:,1), store_position(:,2), store_position(:,3));
-% plot3(store_cog(:,1), store_cog(:,2),store_cog(:,3))
-
 
 
 
