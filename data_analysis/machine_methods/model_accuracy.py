@@ -37,7 +37,6 @@ def leave_one_participant_out_split(df, participant, features, validation):
     # Train: all participants but 1
     
     train_data = df.loc[df.id != participant]
-    print('hhh',train_data)
     train = train_data[features]
     y_train = np.ravel(train_data[validation])
     
@@ -163,7 +162,8 @@ def makeDict(conditions):
 
 
 def testConditions(file, conditions):
-    print(f'Starting Test For {conditions[0]} and {conditions[1]}')
+    reduced_file_name = file[file.rfind('\\')+1:].split('.')[0]
+    print(f'Starting Test For {conditions[0]} and {conditions[1]}, for {reduced_file_name}.csv')
     """ Generates and tests an ensemble classifier for laughter recognition """
     # contains all the data we need for classification
     master_df = pd.read_csv(file)
@@ -180,8 +180,8 @@ def testConditions(file, conditions):
     # Features List (formatted_features is all features)
     columns = np.array(master_df.columns.values)
     if 'Unnamed: 0' in columns:
-        formatted_features = columns[1:]
-    else: formatted_features = columns 
+        formatted_features = columns[3:]
+    else: formatted_features = columns[2:]
     #intensity_features = ['Yaw','Pitch','Roll','AvgVelocity','MaxVelocity','AvgAccel','MaxAccel','AvgArea','COGZ','PathLengthDifference','RangeX','RangeY','RangeZ',
     #                      'TimeElapsed'
     #                      ]
@@ -199,7 +199,7 @@ def testConditions(file, conditions):
 
     y = np.ravel(master_df[validation])
     X = master_df[formatted_features]
-    print(X)
+    #print(X)
 
     transformer = RobustScaler().fit(X)
     new_x = transformer.transform(X)
@@ -227,16 +227,16 @@ def testConditions(file, conditions):
         if i == 4 or i==6 or i ==21:
             pass
         else:
-            print(i)
+            #print(i)
             X_train,y_train,X_test,y_test = leave_one_participant_out_split(master_df, i, formatted_features, validation)
-            print('pls', X_test)
+            #print('pls', X_test)
 
             for clf_key in clf_keys:
                 clf = get_clf(clf_key)
                 #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.1, random_state=1066)
 
                 clf.fit(X_train, y_train)                
-                print("Model and scaler have been saved")
+                #print("Model and scaler have been saved")
                 results=clf.predict(X_test)
                 error = mean_absolute_error(y_test,results)
                 accuracy = accuracy_score(y_test,results)
@@ -252,37 +252,71 @@ def testConditions(file, conditions):
                     "Mean Error": [error]
                 })], ignore_index=True)
     
-    reduced_file_name = file[file.rfind('/')+1:].split('.')[0]
+   
     #newpath = r'C:\Program Files\arbitrary' 
     new_pth = os.getcwd()  
     new_pth = os.path.join(new_pth,'OUTPUTS')
     new_pth = os.path.join(new_pth,reduced_file_name)
+    
     if not os.path.exists(new_pth):
         os.makedirs(new_pth)
     print(df_scores)
     cm_display = ConfusionMatrixDisplay(cm_total, display_labels=conditions).plot()
-    title = f'Correct Guess - Condition {conditions[0],conditions[1]}'
+    title = f'CM_{conditions[0],conditions[1]}'
     cm_display.ax_.set(xlabel='Predicted', ylabel='True',title=title)
     plts_pth = os.path.join(new_pth,'plots')
     if not os.path.exists(plts_pth):
         os.makedirs(plts_pth)
-    plt.savefig(f'{plts_pth}\plot_{title}_{reduced_file_name}.png')
+    plt.savefig(f'{plts_pth}\{title}.png')
     #plt.show()
     files_pth = os.path.join(new_pth,'files')
     if not os.path.exists(files_pth):
         os.makedirs(files_pth)
-    save_accuracy(f'{files_pth}\{validation[0].lower()}_{conditions[0]}_{conditions[1]}.xlsx', df_scores, clf_keys)
+    
+
+    
+    save_accuracy(f'OUTPUTS\{reduced_file_name}\\files\{conditions[0]}_{conditions[1]}.xlsx', df_scores, clf_keys)
+
+    print(f"Completed run of {conditions[0]}_{conditions[1]}, from {reduced_file_name}.csv")
+    return formatted_features, f'{reduced_file_name}.csv', df_scores
+
+def check_string_positions(small_list, large_list):
+    result = []
+    for string in small_list:
+        if string in large_list:
+            result.append('1')
+        else:
+            result.append('0')
+    return result
+
 
 if __name__ == "__main__":
-    #file = 'C:\\Users\\nnamd\Documents\\GitHub\\kinova_share\\data_analysis\\pull_from\\ConfidenceFilter\\reduced.csv'
-    
+    ref_file = 'C:\\Users\\nnamd\Documents\\GitHub\\kinova_share\\data_analysis\\pull_from\\ConfidenceFilter\\reduced.csv'
+    #Get Column Data
+    feature_data = pd.read_csv(ref_file)
+    columns = np.array(feature_data.columns.values)
+    if 'Unnamed: 0' in columns:
+        all_features = columns[3:]
+    else: all_features = columns[2:]
+
+
     path = "C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/pull_from/ConfidenceFilter/*.csv"
+    files = []
+    compare = []
+    for_conven = pd.DataFrame()
+
     for file in glob.glob(path):
-        print(file)
-        testConditions(file, ['A','B'])
-        testConditions(file, ['C','D'])
-        testConditions(file, ['E','F'])
-        testConditions(file, ['G','H'])
+        #print(file)
+        features, file_name, df_scores = testConditions(file, ['A','B'])
+        features, file_name, df_scores = testConditions(file, ['C','D'])
+        features, file_name, df_scores = testConditions(file, ['E','F'])
+        features, file_name, df_scores = testConditions(file, ['G','H'])
+        bools = check_string_positions(features, all_features)
+        compare.append(bools)
+        files.append(file_name)
+    for_conven['filename'] = np.array(files)
+    for_conven[all_features] = np.array(compare)
+    for_conven.to_excel('model_accuracy_results.xlx')
 
     # """ Generates and tests an ensemble classifier for laughter recognition """
     # # contains all the data we need for classification

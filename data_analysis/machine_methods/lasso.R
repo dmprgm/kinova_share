@@ -20,7 +20,7 @@ set.seed(1)
 
 lasso_ouput <- function(list){
   #Select Data of Interest (To Compare)
-  clean_data <- read_csv("C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/robot_data.csv") |>
+  clean_data <- read_csv("C:/Users/nnamd/Documents/GitHub/kinova_share/data_analysis/pull_from/ConfidenceFilter/robot_data.csv") |>
     filter(condition %in% list)
   #Setup Data
   y = as.factor(clean_data$condition) 
@@ -37,10 +37,13 @@ lasso_ouput <- function(list){
   return(co);
 }
 
-print(lasso_ouput(c('A','B')))
-print(lasso_ouput(c('C','D')))
-print(lasso_ouput(c('E','F')))
-print(lasso_ouput(c('G','H')))
+a_b <- lasso_ouput(c('A','B'))
+variables<-row.names(a_b)[inds]
+variables<-variables[!(variables %in% '(Intercept)')];
+
+c_b <- lasso_ouput(c('C','D'))
+e_f <- lasso_ouput(c('E','F'))
+g_h <- lasso_ouput(c('G','H'))
 
 
 

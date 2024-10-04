@@ -5,11 +5,13 @@ kinova = loadrobot("kinovaGen3", Gravity=[0 0 -9.81]);
 kinova.DataFormat = 'col';
 showdetails(kinova)
 %finalData = table('VariableNames',[''])
-groupData = array2table(zeros(0,21));
+groupData = array2table(zeros(0,23));
 groupData.Properties.VariableNames = {'id','condition',...
-    'AvgVelcoity', 'MaxVelocity', 'AvgAccel', 'MaxAccel', 'AvgArea', 'COGZ', 'PathLengthDifference',...
-    'RangeX', 'RangeY', 'RangeZ','TimeElapsed', 'NrPks','AvgForceX','AvgForceY','AvgForceZ','MaxForceX','MaxForceY','MaxForceZ' 'AbgX'};
+    'AvgVelcoity', 'MaxVelocity', 'AvgAccel', 'MaxAccel', 'AvgArea', ...
+    'COGZ', 'PathLengthDifference',...
+    'RangeX', 'RangeY', 'RangeZ','TimeElapsed', 'NrPks','AvgForceX','AvgForceY','AvgForceZ','MaxForceX','MaxForceY','MaxForceZ' 'AvgNormForce','ManipLinear','ManipCombined'};
 all_data = [];
+[wksp,cfgs] = generateRobotWorkspace(kinova,{});
 for i=1:length(trials)
     trial = trials(i).name;
     if contains(trial,'csv')
@@ -39,15 +41,19 @@ for i=1:length(trials)
             store_config = [];
             store_torque = [];
             store_force = [];
+            %For Manipulation Index
+            store_manipLinear = [];
+            store_manipCombined = [];
+            
 
             len = length(pos_joints);
             for i= 1:11:len
                 store_time = [store_time; time(i)];
-        
+
                 config = pos_joints(2:8,i);
                 store_config = [store_config; config'];
-                
-                
+
+
                 %Calculate position
                 homo = getTransform(kinova, config, 'EndEffector_Link');
                 ee_pos = tform2trvec(homo);
@@ -83,8 +89,17 @@ for i=1:length(trials)
                 store_torque = [store_torque; corrected_efforts];
                 force = jacobian*corrected_efforts';
                 store_force = [store_force; force'];
+
+                mIndexCombined = manipulabilityIndex(kinova,config',MotionComponent='combined');
+                mIndexLinear = manipulabilityIndex(kinova,config',MotionComponent='linear');
+                store_manipCombined = [store_manipCombined;mIndexCombined];
+                store_manipLinear = [store_manipLinear;mIndexLinear];
+
             end
             
+            
+
+
             store_distance = [0 0 0 0 0 0 0];
             for i=2:length(store_config)
                 angle_difference = abs(store_config(i,:) - store_config(i-1,:));
@@ -151,12 +166,24 @@ for i=1:length(trials)
             shortest = arclength(first_last(:,1), first_last(:,2), first_last(:,3));
             difference = full - shortest;
             
+
+            %Manips
+            pdata.manipL = store_manipLinear;
+            pdata.manipC = store_manipCombined;
+
+
             %Joint Change in Position
 
-            cell = {id, cond, mean(pdata.speedNorm), max(pdata.speedNorm),mean(pdata.accelNorm),max(pdata.accelNorm),mean(pdata.area),mean(pdata.cogZ), difference, rangeX, rangeY, rangeZ, time(length(time),1),NrPks,mean(store_force(:,4)),mean(store_force(:,5)),mean(store_force(:,6)),max(abs(store_force(:,4))),max(abs(store_force(:,5))),max(abs(store_force(:,6))),mean(test_torque)};
+            cell = {id, cond, mean(pdata.speedNorm), max(pdata.speedNorm),...
+                mean(pdata.accelNorm),max(pdata.accelNorm),mean(pdata.area),...
+                mean(pdata.cogZ), difference, rangeX, rangeY, rangeZ,...
+                time(length(time),1),NrPks,mean(store_force(:,4)),...
+                mean(store_force(:,5)),mean(store_force(:,6)),...
+                max(abs(store_force(:,4))),max(abs(store_force(:,5))),...
+                max(abs(store_force(:,6))),mean(test_torque), mean(pdata.manipL), mean(pdata.manipC)};
             groupData = [groupData;cell];
-            final_table = table(time,pdata.Xposition,pdata.Yposition,pdata.Zposition,pdata.cogX,pdata.cogY,pdata.cogZ,pdata.area,pdata.forceX,pdata.forceY,pdata.forceZ);
-            final_table.Properties.VariableNames = {'time','x', 'y','z','cogx','cogy','cogz','area','forceX','forceY','forceZ'};
+            final_table = table(time,pdata.Xposition,pdata.Yposition,pdata.Zposition,pdata.cogX,pdata.cogY,pdata.cogZ,pdata.area,pdata.forceX,pdata.forceY,pdata.forceZ,pdata.manipL, pdata.manipC);
+            final_table.Properties.VariableNames = {'time','x', 'y','z','cogx','cogy','cogz','area','forceX','forceY','forceZ','manipL','manipC'};
             %part_cond
             name = "OUTPUTS/CompleteTrajectories/trajectory_" + part_cond+  ".csv";
             
