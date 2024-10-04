@@ -27,7 +27,7 @@ class TrajectoryProcessing:
     def __init__(self) -> None:
         self.nodes = []
         self.temp_df = pd.read_csv('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\robot_data.csv')
-    
+        print(self.temp_df)
     def collectTrajectories(self):
         group = 0
         #path = '/home/sharer/Documents/kinova_share/data_analysis/OUTPUTS/Trajectories/*.csv'
