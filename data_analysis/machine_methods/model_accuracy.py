@@ -308,9 +308,14 @@ if __name__ == "__main__":
     for file in glob.glob(path):
         #print(file)
         features, file_name, df_scores = testConditions(file, ['A','B'])
+        
+
         features, file_name, df_scores = testConditions(file, ['C','D'])
         features, file_name, df_scores = testConditions(file, ['E','F'])
         features, file_name, df_scores = testConditions(file, ['G','H'])
+        
+        
+        
         bools = check_string_positions(features, all_features)
         compare.append(bools)
         files.append(file_name)

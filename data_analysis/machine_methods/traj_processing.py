@@ -66,7 +66,7 @@ class TrajectoryProcessing:
         data = pd.DataFrame()
         columns = np.array(df.columns.values[1:])
         data[columns] = self.k_values
-        data.to_csv('OUTPUTS/csvs/kurtosis.csv')
+        #data.to_csv('OUTPUTS/csvs/kurtosis.csv')
         new_columns = ['kurtosis_' + s for s in columns]
         self.temp_df[new_columns] = data[columns]
         #print(np.mean(self.k_values, axis=0))
@@ -84,7 +84,7 @@ class TrajectoryProcessing:
         data = pd.DataFrame()
         columns = np.array(df.columns.values[1:])
         data[columns] = self.skewness
-        data.to_csv('OUTPUTS/csvs/skewness.csv')
+        #data.to_csv('OUTPUTS/csvs/skewness.csv')
         new_columns = ['skew_' + s for s in columns]
         self.temp_df[new_columns] = data[columns]
         #print(np.mean(self.skewness, axis=0))
@@ -171,7 +171,7 @@ test.collectTrajectories()
 test.velocityCalc()
 test.kurtosisCalc()
 test.skewnessCalc()
-test.temp_df.to_csv('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\pull_from\\ConfidenceFilter\\all_kurt_skew.csv')
+test.temp_df.to_csv('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\pull_from\\ConfidenceFilter\\new_all_kurt_skew.csv')
 #test.plotSkewKurt()
 
 
