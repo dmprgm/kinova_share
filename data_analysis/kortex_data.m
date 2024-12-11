@@ -63,7 +63,8 @@ for i=1:length(trials)
                 store_position = [store_position; ee_pos, ypr];
 
                 %Calculate Speed
-                jacobian = geometricJacobian(kinova, config,'EndEffector_Link');
+                jacobian = geometricJacobian(kinova, config,'EndEffector_Link')
+                vel_joints(2:8, i)
                 speed = (jacobian*vel_joints(2:8, i))';
                 store_speed = [store_speed; speed];
 
@@ -185,9 +186,9 @@ for i=1:length(trials)
             final_table = table(time,pdata.Xposition,pdata.Yposition,pdata.Zposition,pdata.cogX,pdata.cogY,pdata.cogZ,pdata.area,pdata.forceX,pdata.forceY,pdata.forceZ,pdata.manipL, pdata.manipC);
             final_table.Properties.VariableNames = {'time','x', 'y','z','cogx','cogy','cogz','area','forceX','forceY','forceZ','manipL','manipC'};
             %part_cond
-            name = "OUTPUTS/CompleteTrajectories/trajectory_" + part_cond+  ".csv";
+            %name = "OUTPUTS/CompleteTrajectories/trajectory_" + part_cond+  ".csv";
             
-            writetable(final_table,name);
+            %writetable(final_table,name);
 
 
         end
@@ -201,7 +202,7 @@ for i=1:length(trials)
 
 end
 
-writetable(groupData,'robot_data.csv')
+%writetable(groupData,'robot_data.csv')
 
 
 

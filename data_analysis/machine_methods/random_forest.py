@@ -79,15 +79,18 @@ class RunRandomForest:
         print(f'Accuracy after feature selection: {accuracy_after:.2f}')
         return feature_importance_df
 
-fig, axes = plt.subplots(nrows=2, ncols=2)
-rf = RunRandomForest('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\reduced.csv')
+#fig, axes = plt.subplots(nrows=2, ncols=2)
+rf = RunRandomForest('C:\\Users\\nnamd\\Documents\\GitHub\\kinova_share\\data_analysis\\pull_from\\ConfidenceFilter\\no_max_ypr.csv')
 
-rf.getFactors(['A','B']).plot(ax= axes[0,0], kind='bar',x='Feature',y='Importance',title='Weight')
+# rf.getFactors(['A','B']).plot(ax= axes[0,0], kind='bar',x='Feature',y='Importance',title='Weight')
+# rf.reset()
+rf.getFactors(['C','D']).plot(kind='bar',x='Feature',y='Importance',title='Highest Importance Space Feature')
 rf.reset()
-rf.getFactors(['C','D']).plot(ax= axes[1,0], kind='bar',x='Feature',y='Importance',title='Space')
-rf.reset()
-rf.getFactors(['E','F']).plot(ax= axes[1,1], kind='bar',x='Feature',y='Importance',title='Flow')
-rf.reset()
-rf.getFactors(['G','H']).plot(ax= axes[0,1], kind='bar',x='Feature',y='Importance',title='Time')
+# rf.getFactors(['E','F']).plot(ax= axes[1,1], kind='bar',x='Feature',y='Importance',title='Flow')
+# rf.reset()
+# rf.getFactors(['G','H']).plot(ax= axes[0,1], kind='bar',x='Feature',y='Importance',title='Time')
+plt.xticks(rotation=45) 
+plt.xlabel('')
+plt.tight_layout()
 plt.show()
 
