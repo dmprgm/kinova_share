@@ -1,15 +1,15 @@
 %Get csvs
-trials = dir("study_csv");
+trials = dir("E:\csvs");
 
 kinova = loadrobot("kinovaGen3", Gravity=[0 0 -9.81]);
 kinova.DataFormat = 'col';
 showdetails(kinova)
 %finalData = table('VariableNames',[''])
-groupData = array2table(zeros(0,23));
+groupData = array2table(zeros(0,17));
 groupData.Properties.VariableNames = {'id','condition',...
     'AvgVelcoity', 'MaxVelocity', 'AvgAccel', 'MaxAccel', 'AvgArea', ...
     'COGZ', 'PathLengthDifference',...
-    'RangeX', 'RangeY', 'RangeZ','TimeElapsed', 'NrPks','AvgForceX','AvgForceY','AvgForceZ','MaxForceX','MaxForceY','MaxForceZ' 'AvgNormForce','ManipLinear','ManipCombined'};
+    'RangeX', 'RangeY', 'RangeZ','TimeElapsed', 'NrPks','AvgNormForce','ManipLinear','ManipCombined'};
 all_data = [];
 [wksp,cfgs] = generateRobotWorkspace(kinova,{});
 for i=1:length(trials)
@@ -21,7 +21,7 @@ for i=1:length(trials)
         final = split(part_cond,'_');
         id = final{1,1};
         cond = final{2,1}(1);
-        T = readtable(append('study_csv/',trial));
+        T = readtable(append('E:\csvs\',trial));
 
         if ~isempty(T)
             time = T.Time;
@@ -63,8 +63,7 @@ for i=1:length(trials)
                 store_position = [store_position; ee_pos, ypr];
 
                 %Calculate Speed
-                jacobian = geometricJacobian(kinova, config,'EndEffector_Link')
-                vel_joints(2:8, i)
+                jacobian = geometricJacobian(kinova, config,'EndEffector_Link');
                 speed = (jacobian*vel_joints(2:8, i))';
                 store_speed = [store_speed; speed];
 
@@ -178,17 +177,15 @@ for i=1:length(trials)
             cell = {id, cond, mean(pdata.speedNorm), max(pdata.speedNorm),...
                 mean(pdata.accelNorm),max(pdata.accelNorm),mean(pdata.area),...
                 mean(pdata.cogZ), difference, rangeX, rangeY, rangeZ,...
-                time(length(time),1),NrPks,mean(store_force(:,4)),...
-                mean(store_force(:,5)),mean(store_force(:,6)),...
-                max(abs(store_force(:,4))),max(abs(store_force(:,5))),...
-                max(abs(store_force(:,6))),mean(test_torque), mean(pdata.manipL), mean(pdata.manipC)};
+                time(length(time),1),NrPks,...
+                mean(test_torque), mean(pdata.manipL), mean(pdata.manipC)};
             groupData = [groupData;cell];
             final_table = table(time,pdata.Xposition,pdata.Yposition,pdata.Zposition,pdata.cogX,pdata.cogY,pdata.cogZ,pdata.area,pdata.forceX,pdata.forceY,pdata.forceZ,pdata.manipL, pdata.manipC);
             final_table.Properties.VariableNames = {'time','x', 'y','z','cogx','cogy','cogz','area','forceX','forceY','forceZ','manipL','manipC'};
             %part_cond
-            %name = "OUTPUTS/CompleteTrajectories/trajectory_" + part_cond+  ".csv";
+            name = "OUTPUTS/CompleteTrajectories/trajectory_" + part_cond+  ".csv";
             
-            %writetable(final_table,name);
+            writetable(final_table,name);
 
 
         end
@@ -202,7 +199,7 @@ for i=1:length(trials)
 
 end
 
-%writetable(groupData,'robot_data.csv')
+writetable(groupData,'robot_data.csv')
 
 
 
